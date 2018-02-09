@@ -1,0 +1,7 @@
+set terminal png truecolor
+set output 'images/4.png'
+set key off
+unset colorbox
+set style circle radius 0.001
+set style fill transparent solid 0.5 noborder
+plot [0:1][0:1] 'secuencia.csv' u 1:2:($3*256) w circles fc var
