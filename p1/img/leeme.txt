@@ -1,2 +1,0 @@
-Aquí se almacenarán temporalmente las imágenes que generen los programas.
-Incluí este archivo porque de otra manera no se generaría esta carpeta en el repositorio y es necesaria para correr los programas incluidos.
