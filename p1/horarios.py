@@ -1,9 +1,9 @@
 from random import random
 from math import sin, cos
 
-alumnosTotales = 20
-clasesTotales = 8
-horariosTotales = 6
+alumnosTotales = 50
+clasesTotales = 20
+horariosTotales = 5
 horarioProb = 0.2
 
 rAlumnos = alumnosTotales / (2 * 3.14) * 3 # Radio para alumnos
@@ -82,12 +82,13 @@ t = len(alumnosClases) + 1
 for c in range(len(clasesHorarios)):
     clase = clasesHorarios[c][0]
     horario = clasesHorarios[c][1]
-    size = [fila[1] for fila in alumnosClases].count(clase) * 2
-    size = size / len(alumnosClases) * 1.0 + 0.1
+    size = [fila[1] for fila in alumnosClases].count(clase) * 2 # por cada clase que haya sido elegida por un alumno, se tiene un tamaño de clase; mientras más alumnos, más grande
+    size = size / len(alumnosClases) + 0.1
+    size = size * rAlumnos / 5
     print("set arrow " + str(t + c) +
     " from " + str(clasesPos[clase][0]) + "," + str(clasesPos[clase][1]) +
     " to " + str(horariosPos[horario][0]) + "," + str(horariosPos[horario][1]) + " nohead")
-    print("set object circle at " + str(clasesPos[clase][0]) + "," + str(clasesPos[clase][1]) + " fillcolor palette frac " + str(0.1 + horario / horariosTotales * 1.0) + " fillstyle solid noborder size " + str(size))
+    print("set object circle at " + str(clasesPos[clase][0]) + "," + str(clasesPos[clase][1]) + " fillcolor palette frac " + str(horario / horariosTotales * 1.0) + " fillstyle solid noborder size " + str(size))
 print("show arrow")
 
 for a in range(alumnosTotales):
@@ -96,6 +97,7 @@ for a in range(alumnosTotales):
 for h in range(horariosTotales):
     size = [fila[1] for fila in clasesHorarios].count(h)# Contar elementos por columna https://stackoverflow.com/questions/903853/how-do-you-extract-a-column-from-a-multi-dimensional-array
     size = size / len(clasesHorarios) * 1.0 + 0.1
-    print("set object circle at " + str(horariosPos[h][0]) + "," + str(horariosPos[h][1]) + " fillcolor palette frac " + str(0.1 + h / horariosTotales * 1.0) + " fillstyle solid noborder size " + str(size) ) # http://gnuplot.sourceforge.net/docs_4.2/node62.html
+    size = size * rAlumnos / 8
+    print("set object circle at " + str(horariosPos[h][0]) + "," + str(horariosPos[h][1]) + " fillcolor palette frac " + str(h / horariosTotales * 1.0) + " fillstyle solid noborder size " + str(size) ) # http://gnuplot.sourceforge.net/docs_4.2/node62.html
 
 print("plot [-{}:{}][-{}:{}] NaN t''".format(rAlumnos + 1, rAlumnos + 1, rAlumnos + 1, rAlumnos + 1)) # http://gnuplot-surprising.blogspot.mx/2011/11/how-to-plot-nothing-using-gnuplot.html
