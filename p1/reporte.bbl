@@ -1,0 +1,13 @@
+\begin{thebibliography}{1}
+
+\bibitem{BarabasiNetwork}
+Albert-Lázló Barábasi.
+\newblock Graph theory.
+\newblock \url{http://barabasi.com/networksciencebook/chapter/2}.
+
+\bibitem{SchaefferNetwork}
+Elisa Schaeffer.
+\newblock Optimización de flujo en redes.
+\newblock \url{https://elisa.dyndns-web.com/teaching/opt/flow/}.
+
+\end{thebibliography}
