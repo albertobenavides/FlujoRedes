@@ -39,21 +39,25 @@
     \item $A$: cantidad de alumnos inscritos,
     \item $M$: número de materias registradas,
     \item $H$: total de horarios disponibles y
-    \item $p_h$: probabilidad de que un horario sea asignado a cualquier materia
+    \item $p_h$: probabilidad de que un horario sea asignado a cualquier materia.
   \end{itemize}
 
-  Posteriormente, se generaron aleatoriamente probabilidades $p_m, \forall m \in M$ de que cada materia fuera interesante para cualquier alumno y se comparó para cada alumno y materia si una probabilidad $p_{am}$ generada al azar de que a cada alumno le interesara cierta materia, de modo que si $p_{am} < p_m, \forall a \in A, \forall m \in M$, se creara una pareja de interés alumno-materia, comparación que se repetió hasta que todos los alumnos estuvieran al menos interesados en una materia.
+  Posteriormente, se generaron aleatoriamente probabilidades $p_m, \forall m \in M$ de que cada materia fuera interesante para cualquier alumno y se comparó para cada alumno y materia con una probabilidad $p_{am}$ generada al azar de que a cada alumno le interesara cierta materia, de modo que si $p_{am} < p_m, \forall a \in A, \forall m \in M$, se creara una pareja de interés alumno-materia, comparación que se repitió hasta que todos los alumnos estuvieran al menos interesados en una materia.
 
   A continuación, se establecieron parejas materia-horario comparando la probabilidad $p_h$ de que a un horario se le asignara cualquier materia,  con una probabilidad $p_mh$ generada al azar de que a una materia se asignara cierto horario, tal que si $p_{mh} < p_h$ se asignaría a la materia $m$ el horario $h$, lo cual se repetiría para cada materia hasta que todas las materias tuvieran un solo horario asignado.
 
   Una vez generadas estas parejas alumnos-materias y materias-horarios, se optó por la representación mediante nodos de los alumnos, materias y horarios, mientras que las relaciones entre estos nodos se mostrarían por arcos. Así, cada alumno interesado en una clase y cada materia inscrita en un horario formarían una terna nodo-arco-nodo. Se eligió representar a los alumnos por círculos pequeños de color negro, a los horarios por círculos de distintos colores y tamaño proporcional a la cantidad de materias asignadas, y a las materias por los colores de los horarios a los que estuvieran asignadas de tamaño proporcional a la cantidad de alumnos interesados en ellas. La ubicación de estos nodos se hizo de manera circular y concéntrica con el fin de diferenciar capas. La circunferencia de nodos exterior representa los alumnos, las materias están en la circunferencia intermedia y los horarios constituyen la cirfunferencia interior, acomodo que puede apreciarse en la figura \ref{fig:horarios}.
 
   \begin{figure}[h]
-    \includegraphics[width=0.7\textwidth]{horarios}
+    \includegraphics[width=0.7\textwidth]{h000000}
     \centering
     \caption{Representación de alumnos (nodos en negro), materias (nodos que forman la cirfunferencia intermedia) y horarios (nodos que constituyen la circunferencia interior) y sus relaciones mediante arcos.}
     \label{fig:horarios}
   \end{figure}
+
+  Se eligió esta disposición circular debido a que era posible medir la distancia total de los arcos con el fin de minimizar esta distancia en un algoritmo exhaustivo que recorre todos los nodos de un mismo tipo a la vez y los permuta al azar entre sí mismos, almacenando dicho acomodo para la siguiente iteración solo cuando la nueva distancia total de los arcos es menor a la distancia total almacenada en el conjunto anterior. Con esto, e consiguió una reducción de la distancia de $7037.76$ a $6476.35$. Se dejó correr esta mecánica por un 200 mil pasos y se obtuvo una animación del proceso mediante ImageMagick, la cual puede verse en .
+
+  Como trabajo futuro se desea minimizar el número de veces que dos materias que le interesan a un alumno coincidan en el mismo horario y aplicar un algoritmo genético para mejorar el desempeño en el proceso de minimización de distancias.
 
   \bibliography{biblio}{}
   \bibliographystyle{plain}
