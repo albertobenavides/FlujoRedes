@@ -1,7 +1,8 @@
 class Nodo:
 
-    def __init__(self, radio = 1, color = 1, posicion = (0, 0), tipo = ""):
-        self.radio = radio / 10
-        self.color = color
-        self.posicion = posicion
-        self.tipo = tipo
+    def __init__(self):
+        self.radio = 1 / 10
+        self.color = 1
+        self.posicion = (0, 0)
+        self.tipo = ""
+        self.id = 0
