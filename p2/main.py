@@ -1,9 +1,9 @@
 from Grafo import Grafo
 from Nodo import Nodo
-from random import random, randint
+from random import random, randint, sample
 from time import time
 
-nodosTotales = 10
+nodosTotales = 1000
 
 G = Grafo()
 G.dirigido = True
@@ -11,6 +11,7 @@ G.dirigido = True
 for i in range(nodosTotales):
     n = Nodo()
     n.id = i
+    n.radio = 0.01
     n.posicion = (random(), random())
     n.Color(
         randint(0, 255), # r
@@ -20,17 +21,16 @@ for i in range(nodosTotales):
     )
     G.AgregarNodo(n)
 
-randint(0, nodosTotales - 1)
 
 arcosTotales = 0
-for i in range(nodosTotales - 1):
-    arcos =  randint(1, 1) # arcos desde nodo i
-    for a in range(arcos):
+for n in G.nodos:
+    arcos =  randint(1, 5) # arcos desde nodo i
+    vecinos = sample(G.nodos, arcos)
+    if n in vecinos:
+        vecinos.remove(n)
+    for v in vecinos:
         arcosTotales = arcosTotales + 1
-        siguiente = i + 1
-        rVecino = randint(siguiente, nodosTotales - 1)
-        G.ConectarNodos(G.nodos[i], G.nodos[rVecino])
-        print("i = " + str(i) + "; nodo = " + str(G.nodos[i].id) )
+        G.ConectarNodos(n, v, random() * 2)
 
 #Estados
 #no visitado    0

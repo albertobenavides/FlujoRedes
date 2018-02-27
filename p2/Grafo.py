@@ -4,7 +4,7 @@
 # Separar
 # EPS
 
-from math import sqrt
+from math import sqrt, atan, sin, cos
 from os import system
 class Grafo:
 
@@ -50,13 +50,38 @@ class Grafo:
             i = 1 # Deben ser mayores a 1
             for n in self.nodos:
                 for v in self.vecinos[n]:
+                    x1 = n.posicion[0]
+                    y1 = n.posicion[1]
+
+                    x2 = v.posicion[0]
+                    y2 = v.posicion[1]
+
+                    m = (y2 - y1) / (x2 - x1)
+                    alfa = atan(m)
+
+                    xNodo = n.radio * cos(alfa)
+                    yNodo = n.radio * sin(alfa)
+                    xVecino = -v.radio * cos(alfa)
+                    yVecino = -v.radio * sin(alfa)
+
+                    if x1 > x2:
+                        xNodo = xNodo * -1
+                        yNodo = yNodo * -1
+                        xVecino = xVecino * -1
+                        yVecino = yVecino * -1
+
+                    x1 = x1 + xNodo
+                    x2 = x2 + xVecino
+                    y1 = y1 + yNodo
+                    y2 = y2 + yVecino
+
                     print("set arrow " + str(i) +
-                        " from " + str(n.posicion[0]) + "," + str(n.posicion[1]) + " to " + str(v.posicion[0]) + "," + str(v.posicion[1]), end = "", file = f) # https://stackoverflow.com/questions/5598181/multiple-prints-on-the-same-line
+                        " from " + str(x1) + "," + str(y1) + " to " + str(x2) + "," + str(y2) + " linewidth " + str(self.pesos[(n, v)]), end = "", file = f) # https://stackoverflow.com/questions/5598181/multiple-prints-on-the-same-line
                     if self.dirigido:
                         print("", file = f)
                     else:
                         print(" nohead", file = f)
-                i = i + 1
+                    i = i + 1
 
             print("set style fill transparent solid 0.5 noborder", file = f)
             print("plot [-0.1:1.1][-0.1:1.1] NaN t''", file = f)
