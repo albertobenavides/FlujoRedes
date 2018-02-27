@@ -81,6 +81,7 @@ La imagen del grafo generado muestra un nodo en color gris, con centro en (0.5, 
 - [ ] Ejemplo de aplicación de flujo en redes
 
   [path]: Instrucciones para [`python3`][862993bb] y [`gnuplot`][2294b1ea]
+
   [862993bb]: https://stackoverflow.com/questions/3701646/how-to-add-to-the-pythonpath-in-windows-7 "Proceso de agregado de carpetas al `PATH` de Windows."
   [08100e87]: https://www.python.org/downloads/ "Descargas de `python3`."
   [a873f787]: https://sourceforge.net/projects/gnuplot/files/gnuplot/ "Descarga de `gnuplot`."
