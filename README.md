@@ -70,7 +70,7 @@ G.DibujarGrafo("Título")
 
 La imagen del grafo generado muestra un nodo en color gris, con coordenadas (0.5, 0.5), radio 0.1 e identificador "1":
 
-![](/images/2018/02/grafo.png)
+![](https://raw.githubusercontent.com/jbenavidesv87/FlujoRedes/master/ejemplos/01%20Grafo%20Simple/grafo.png)
 
 
 ## Tareas pendientes
