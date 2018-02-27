@@ -1,18 +1,28 @@
-set terminal png
-set output 'Grafo.png'
+set terminal png truecolor
+set output 'grafo.png'
 set key off
 set size square
 unset colorbox
-set title'hola'
-set object circle at 0.8939507435239383,0.031917983993022925 fillcolor palette frac '1' fillstyle solid noborder size 0.1
-set object circle at 0.29395375982277805,0.14998201916245368 fillcolor palette frac '1' fillstyle solid noborder size 0.1
-set object circle at 0.3772619506475303,0.5141380777486387 fillcolor palette frac '1' fillstyle solid noborder size 0.1
-set object circle at 0.8481187826936493,0.3557569446512069 fillcolor palette frac '1' fillstyle solid noborder size 0.1
-set object circle at 0.3906087212224114,0.06904708957345795 fillcolor palette frac '1' fillstyle solid noborder size 0.1
-set object circle at 0.15096375262363337,0.07150153915398672 fillcolor palette frac '1' fillstyle solid noborder size 0.1
-set object circle at 0.5359775918319829,0.1814029832118048 fillcolor palette frac '1' fillstyle solid noborder size 0.1
-set object circle at 0.5711185654295148,0.8505037627320825 fillcolor palette frac '1' fillstyle solid noborder size 0.1
-set object circle at 0.8981813838246864,0.34579236210232867 fillcolor palette frac '1' fillstyle solid noborder size 0.1
-set object circle at 0.9458907655493046,0.5988455106771616 fillcolor palette frac '1' fillstyle solid noborder size 0.1
-plot [-0.5:1.5][-0.5:1.5] NaN t''
+set title''
+set object circle at 0.6124135819656749,0.9985077184050322 fillcolor rgb '#80229f5a' front fillstyle solid noborder size 0.1
+set object circle at 0.5731781703433253,0.831165227338525 fillcolor rgb '#8097cbc' front fillstyle solid noborder size 0.1
+set object circle at 0.1580113220181567,0.16275727411374696 fillcolor rgb '#80e54a40' front fillstyle solid noborder size 0.1
+set object circle at 0.43457067648982683,0.7150494048493463 fillcolor rgb '#80e8f490' front fillstyle solid noborder size 0.1
+set object circle at 0.729277533408441,0.09146421077101763 fillcolor rgb '#805a6edb' front fillstyle solid noborder size 0.1
+set object circle at 0.7278088852935107,0.6326222664542437 fillcolor rgb '#8009115' front fillstyle solid noborder size 0.1
+set object circle at 0.2742193093044819,0.1454469417856279 fillcolor rgb '#80d446cd' front fillstyle solid noborder size 0.1
+set object circle at 0.2843472373684587,0.14568365491130486 fillcolor rgb '#803acc69' front fillstyle solid noborder size 0.1
+set object circle at 0.10049968523515151,0.7343434435060768 fillcolor rgb '#8044d458' front fillstyle solid noborder size 0.1
+set object circle at 0.9531278447638439,0.8142353270575212 fillcolor rgb '#8086834' front fillstyle solid noborder size 0.1
+set arrow 1 from 0.6124135819656749,0.9985077184050322 to 0.1580113220181567,0.16275727411374696
+set arrow 2 from 0.5731781703433253,0.831165227338525 to 0.7278088852935107,0.6326222664542437
+set arrow 3 from 0.1580113220181567,0.16275727411374696 to 0.729277533408441,0.09146421077101763
+set arrow 4 from 0.43457067648982683,0.7150494048493463 to 0.9531278447638439,0.8142353270575212
+set arrow 5 from 0.729277533408441,0.09146421077101763 to 0.9531278447638439,0.8142353270575212
+set arrow 6 from 0.7278088852935107,0.6326222664542437 to 0.9531278447638439,0.8142353270575212
+set arrow 7 from 0.2742193093044819,0.1454469417856279 to 0.2843472373684587,0.14568365491130486
+set arrow 8 from 0.2843472373684587,0.14568365491130486 to 0.10049968523515151,0.7343434435060768
+set arrow 9 from 0.10049968523515151,0.7343434435060768 to 0.9531278447638439,0.8142353270575212
+set style fill transparent solid 0.5 noborder
+plot [-0.1:1.1][-0.1:1.1] NaN t''
 quit
