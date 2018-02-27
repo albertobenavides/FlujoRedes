@@ -2,7 +2,7 @@
 
 Este repositorio pretende ofrecer un programa que permita generar y trazar grafos enfocados a representar problemas de Flujo en redes, aunque podría utilizarse para otros fines.
 
-## Instalación
+## Requisitos
 
 Es necesario tener instalados:
 * [`python3`][08100e87]
@@ -12,7 +12,7 @@ Es necesario que los usuarios de `Windows` agreguen los directorios de instalaci
 
 ## Documentación
 
-La carpeta de `ejemplos` tiene enumerados los códigos que aquí se explican, en orden de aparición.
+La carpeta de `ejemplos` contiene los códigos que aquí se explican, en orden de aparición.
 
 ### Ejemplo 1. Grafo simple
 
@@ -70,7 +70,7 @@ G.DibujarGrafo("Título")
 
 La imagen del grafo generado muestra un nodo en color gris, con coordenadas (0.5, 0.5), radio 0.1 e identificador "1":
 
-![](https://raw.githubusercontent.com/jbenavidesv87/FlujoRedes/master/ejemplos/01%20Grafo%20Simple/grafo.png)
+![](https://raw.githubusercontent.com/jbenavidesv87/FlujoRedes/master/ejemplos/01GrafoSimple/grafo.png)
 
 
 ## Tareas pendientes
