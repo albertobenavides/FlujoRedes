@@ -8,4 +8,9 @@ class Nodo:
         self.id = 0
 
     def Color(self, r, g, b, a):
-        self.color = "#" + str(hex(a)[2:] + str(hex(r)[2:]) + str(hex(g)[2:]) + str(hex(b)[2:])) # https://stackoverflow.com/questions/5796238/python-convert-decimal-to-hex
+        self.color = "#"
+        self.color += format(a, '02x')
+        self.color += format(r, '02x')
+        self.color += format(g, '02x')
+        self.color += format(b, '02x')
+        # https://www.w3resource.com/python-exercises/python-basic-exercise-141.php

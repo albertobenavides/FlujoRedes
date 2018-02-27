@@ -3,7 +3,7 @@ from Nodo import Nodo
 from random import random, randint, sample
 from time import time
 
-nodosTotales = 1000
+nodosTotales = 10
 
 G = Grafo()
 G.dirigido = True
@@ -11,7 +11,7 @@ G.dirigido = True
 for i in range(nodosTotales):
     n = Nodo()
     n.id = i
-    n.radio = 0.01
+    n.radio = 0.05
     n.posicion = (random(), random())
     n.Color(
         randint(0, 255), # r
@@ -24,7 +24,7 @@ for i in range(nodosTotales):
 
 arcosTotales = 0
 for n in G.nodos:
-    arcos =  randint(1, 5) # arcos desde nodo i
+    arcos =  randint(1, 2) # arcos desde nodo i
     vecinos = sample(G.nodos, arcos)
     if n in vecinos:
         vecinos.remove(n)
@@ -65,4 +65,4 @@ tFinal = time() - tInicial
 print("tiempo transcurrido = %.10f" % tFinal)
 print("nodos = " + str(nodosTotales) + " ; arcos = " + str(arcos) + " ; tiempo total = " + str(t))
 
-G.DibujarGrafo()
+G.DibujarGrafo("Ejemplo")
