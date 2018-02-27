@@ -8,4 +8,4 @@ G = Grafo()
 n = Nodo()
 G.AgregarNodo(n)
 
-G.DibujarGrafo("Título")
+G.DibujarGrafo("Ejemplo 1")

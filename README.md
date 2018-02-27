@@ -8,7 +8,7 @@ Es necesario tener instalados:
 * [`python3`][08100e87]
 * [`gnuplot`][a873f787]
 
-Es necesario que los usuarios de `Windows` agreguen los directorios de instalación de ambos programas al `PATH` de `Windows`[1] para poder correr los ejemplos desde la `Consola de comandos`.
+Los usuarios de `Windows` deben agregar los directorios de instalación de ambos programas al `PATH` de [`Windows`][1] para poder correr los ejemplos desde la `Consola de comandos`.
 
 ## Documentación
 
@@ -36,7 +36,6 @@ Para agregar un nodo *n*, hay que declararlo primero y luego añadirlo a un graf
 
 ```python
 [...]
-
 n = Nodo()
 G.AgregarNodo(n)
 ```
@@ -51,7 +50,6 @@ Generar una imagen `PNG` con nombre de archivo `grafo.png` y título **Ejemplo 1
 
 ```python
 [...]
-
 G.DibujarGrafo("Ejemplo 1")
 ```
 
@@ -68,7 +66,7 @@ G.AgregarNodo(n)
 G.DibujarGrafo("Título")
 ```
 
-La imagen del grafo generado muestra un nodo en color gris, con coordenadas (0.5, 0.5), radio 0.1 e identificador "1":
+La imagen del grafo generado muestra un nodo en color gris, con centro en (0.5, 0.5), radio 0.1 e identificador "1":
 
 ![](https://raw.githubusercontent.com/jbenavidesv87/FlujoRedes/master/ejemplos/01GrafoSimple/grafo.png)
 
