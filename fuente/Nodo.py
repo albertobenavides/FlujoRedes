@@ -1,11 +1,11 @@
 class Nodo:
 
     def __init__(self):
-        self.radio = 0.1
-        self.color = "#00000000"
-        self.posicion = (0, 0)
+        self.id = "1"
         self.tipo = ""
-        self.id = 0
+        self.posicion = (0.5, 0.5)
+        self.radio = 0.1
+        self.color = "#0080808080"
 
     def Color(self, r, g, b, a):
         self.color = "#"

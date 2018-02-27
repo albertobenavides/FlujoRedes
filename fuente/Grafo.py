@@ -1,19 +1,13 @@
-# Grafo dirigido
-# Grafo ponderado
-# Formas de nodos
-# Separar
-# EPS
-
 from math import sqrt, atan, sin, cos
 from os import system
 class Grafo:
 
     def __init__(self, nombre = "grafo"):
+        self.nombre = nombre
+        self.dirigido = False
         self.nodos = [] # un conjunto
         self.pesos = dict() # un mapeo de pesos de aristas
         self.vecinos = dict() # un mapeo
-        self.nombre = nombre
-        self.dirigido = False
 
     def AgregarNodo(self, n):
         self.nodos.append(n)
@@ -45,7 +39,8 @@ class Grafo:
             print("set title'" + titulo + "'", file = f)
 
             for n in self.nodos:
-                print("set object circle at " + str(n.posicion[0]) + "," + str(n.posicion[1]) + " fillcolor rgb '" + n.color + "' front fillstyle solid noborder size " + str(n.radio), file = f) # http://www.bersch.net/gnuplot-doc/layers.html
+                print("set label '" + str(n.id) + "' at " + str(n.posicion[0]) + "," + str(n.posicion[1]) + " left offset char -" + str(0.4 * len(n.id)) + ",0", file = f) # https://stackoverflow.com/questions/23690551/how-do-you-assign-a-label-when-using-set-object-circle-in-gnuplot
+                print("set object circle at " + str(n.posicion[0]) + "," + str(n.posicion[1]) + " fillcolor rgb '" + n.color + "' fillstyle solid noborder size " + str(n.radio), file = f) # http://www.bersch.net/gnuplot-doc/layers.html
 
             i = 1 # Deben ser mayores a 1
             for n in self.nodos:
