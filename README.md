@@ -8,7 +8,7 @@ Es necesario tener instalados:
 * [`python3`][08100e87]
 * [`gnuplot`][a873f787]
 
-Los usuarios de `Windows` deben agregar los directorios de instalación de ambos programas al `PATH` de `Windows` <note id="b1">[[1]](#a1)</note> para poder correr los ejemplos desde la `Consola de comandos`.
+Los usuarios de `Windows` deben agregar los directorios de instalación de ambos programas al `PATH` de `Windows` [1] para poder correr los ejemplos desde el `Símbolo de sistema`.
 
 ## Documentación
 
@@ -26,7 +26,7 @@ G = Grafo()
 ```
 
 Por defecto, un grafo inicializado de esta manera tiene las siguientes propiedades:
-* Nombre: "grafo"
+* Nombre: "grafo" (cadena de texto)
 * Dirigido: No
 
 Para agregar un nodo *n<sub>1</sub>*, hay que declararlo primero y luego añadirlo a un grafo previamente existente:
@@ -69,7 +69,7 @@ La imagen del grafo generado hasta este punto muestra un eje de coordenadas con 
 
 ![](https://raw.githubusercontent.com/jbenavidesv87/FlujoRedes/master/ejemplos/01GrafoSimple/grafo.png)
 
-De momento <note id="b2">[[\*]](#a2)</note>, para trazar arcos en un grafo hacen falta al menos dos nodos vecinos que ocupen una posición distinta, por lo que primero se tendría que agregar otro nodo, *n<sub>2</sub>*, al grafo. En esta ocasión, tras crear el nodo, se modificará su identificador y posición, para finalmente agregarlo al grafo *G* antes definido, todo lo cual se hará mediante las instrucciones:
+De momento [\*], para trazar arcos en un grafo hacen falta al menos dos nodos vecinos que ocupen una posición distinta, por lo que primero se tendría que agregar otro nodo, *n<sub>2</sub>*, al grafo. En esta ocasión, tras crear el nodo, se modificará su identificador y posición, para finalmente agregarlo al grafo *G* antes definido, todo lo cual se hará mediante las instrucciones:
 
 ```python
 [...]
@@ -100,18 +100,18 @@ La nueva imagen muestra a *n<sub>1</sub>* acompañado de *n<sub>2</sub>* con sus
 
 ![](https://raw.githubusercontent.com/jbenavidesv87/FlujoRedes/master/ejemplos/01GrafoSimple/arco.png)
 
-El programa completo de este primer ejemplo puede consultarse en `ejemplos/01GrafoSimple/main.py`.
+El programa completo de este primer ejemplo puede consultarse en [`ejemplos/01GrafoSimple/main.py`](ejemplos/01GrafoSimple).
 
 ## Tareas pendientes
-- [ ] Arcos simples
+- [x] Arcos simples
 - [ ] Configuración de nodos
 - [ ] Configuración de grafos
 - [ ] Ejemplos de aplicación con algoritmo genético
 - [ ] Ejemplo de aplicación de flujo en redes
 - [ ] Agregar imágenes en formato `EPS`
-- [ ] <note id="a2">[*](#b2) Agregar conexiones de un mismo nodo consigo mismo
+- [ ] [\*] Agregar conexiones de un mismo nodo consigo mismo
 
-  <note id="a1">[1](#b1)</note>: Instrucciones para [`python3`][862993bb] y [`gnuplot`][2294b1ea]
+  [1]: Instrucciones para [`python3`][862993bb] y [`gnuplot`][2294b1ea].
 
   [862993bb]: https://stackoverflow.com/questions/3701646/how-to-add-to-the-pythonpath-in-windows-7 "Proceso de agregado de carpetas al `PATH` de Windows."
   [08100e87]: https://www.python.org/downloads/ "Descargas de `python3`."
