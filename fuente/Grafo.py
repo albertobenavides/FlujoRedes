@@ -19,8 +19,11 @@ class Grafo:
             self.AgregarNodo(n1)
         if n2 not in self.nodos:
             self.AgregarNodo(n2)
-        self.pesos[(n1, n2)] = peso
         self.vecinos[n1].add(n2)
+        self.pesos[(n1, n2)] = peso
+        if self.dirigido:
+            self.vecinos[n2].add(n1) # Si no es dirigido, también debería haber una conexión bivalente
+            self.pesos[(n2, n1)] = peso
 
     def DistanciaTotal(self):
         d = 0.0
