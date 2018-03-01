@@ -1,6 +1,6 @@
 # Ejemplo 3. Arcos
 
-En este programa se crea un grafo dirigido con veinte nodos coloreados al azar dispuestos en forma circular en torno a un centro en (0.5, 0.5), identificados cada uno por números enteros del 0 al 19, ambos incluidos. Cada uno de estos veinte nodos se conecta con una probabilidad de 0.3 con otros tres nodos elegidos al azar. A cada vecindad establecida de esta manera, se le asigna un peso al azar en el rango [0, 2]. Uno de los grafos resultantes es el siguiente:
+En este programa se crea un grafo dirigido con veinte nodos coloreados al azar dispuestos en forma circular en torno a un centro en (0.5, 0.5), identificados cada uno por números enteros del 0 al 19, ambos incluidos. Cada uno de estos veinte nodos se conecta con una probabilidad de 0.3 con otros tres nodos elegidos al azar. A cada vecindad establecida de esta manera, se le asigna un peso al azar en el rango [0, 2] que se refleja en el groso de la línea que representa cada arco. Uno de los grafos resultantes es el siguiente:
 
 ![](grafo.png?raw=true)
 
