@@ -11,7 +11,6 @@ r = 0.5 # Radio de la circunferencia
 P = 2 * 3.14 * r # Perímetro de la circunferencia
 rNodo = P / N / 3 # Radio para cada nodo
 theta = 2 * 3.14 / N # Fracción angular que ocupará cada nodo
-
 pVecino = 0.3 # Probabilidad de hacer una vecindad
 
 G = Grafo()
@@ -25,7 +24,6 @@ for i in range(N):
         randint(0, 255), # rojo (R)
         randint(0, 255), # verde (G)
         randint(0, 255),  # azul (B)
-        0, # alfa (A); transparencia
     )
     n.posicion = (
         0.5 + r * cos(theta * i), 0.5 + r * sin(theta * i)

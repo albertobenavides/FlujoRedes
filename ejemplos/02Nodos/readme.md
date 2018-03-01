@@ -1,6 +1,6 @@
 # Ejemplo 2. Nodos
 
-En este ejemplo se crearán nodos y se modificarán sus propiedades iniciales manualmente y luego de manera aleatoria mediante el uso de las funciones `random()` y `randint()` de la librería `random` de `python`. Al usar `random()` se genera un número decimal aleatorio entre 0 y 1, ambos incluidos; y `randint(a, b)` genera un número entero entre *a* y *b*, ambos incluidos.
+En este ejemplo se crearán nodos y se modificarán sus propiedades iniciales manualmente y luego de manera aleatoria mediante el uso de las funciones `random` y `randint` de la librería `random` de `python`. Al usar `random()` se genera un número decimal aleatorio entre 0 y 1, ambos incluidos; y `randint(a, b)` genera un número entero entre *a* y *b*, ambos incluidos.
 
 ```python
 from Grafo import Grafo

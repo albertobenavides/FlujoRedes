@@ -22,6 +22,10 @@ Nota: Los usuarios de `Windows` deben agregar los directorios de instalación de
 
 La carpeta [`ejemplos`](ejemplos/) contiene los códigos que aquí se explican.
 
+### Notación
+
+Se usará *G*, *n* u otro tipo de variables en este formato para referirse tanto a un grafo *G* almacenado en la variable `G`, o a un nodo *n* almacenado en la variable `n`, etcétera; el contexto será lo suficientemente claro para evitar confusiones.
+
 ### Estructura mínima
 
  Para definir un grafo con un nodo y obtener una imagen `PNG` del mismo, basta con escribir el siguiente [código](ejemplos/01GrafoSimple/main.py):
@@ -41,11 +45,13 @@ G.DibujarGrafo("Ejemplo 1.1 Un nodo")
 
 ### Grafos
 
+Declarar un grafo y almacenarlo en la variable `G` se logra por la instrucción:
+
 ```
 G = Grafo()
 ```
 
-Esta instrucción crearía un **grafo** *G* almacenado en la variable `G` con las siguientes propiedades:
+Un grafo *G* declarado de esta forma, posee las siguientes propiedades:
 
 Propiedad | Variable   | Valor por defecto
 ----------|------------|------------------
@@ -57,7 +63,7 @@ Vecinos   | `vecinos`  | `dict()`
 
 El **nombre** del grafo indica el nombre de los archivos de imagen o instrucciones de `gnuplot` que se generarán de este grafo. Así, un grafo generado de manera predeterminada produciría archivos de imagen `grafo.png`.
 
-Cambiar el nombre de un grafo en `G` por ["arco"](ejemplos/01GrafoSimple/main.py) se realiza del modo siguiente:
+Cambiar el nombre de un grafo *G* por ["arco"](ejemplos/01GrafoSimple/main.py) se realiza del modo siguiente:
 
 ```python
 G.nombre = "arco"
@@ -92,15 +98,15 @@ n = Nodo()
 
 Por defecto, un nodo tiene las siguientes propiedades:
 
-Propiedad  | Variable  | Valor por defecto
---|---|--
-Identificador  | `id`  |  `"1"`
-Tipo  | `tipo`  | `""`
-Posición  | `posicion`  | `(0.5, 0.5)`
-Radio  | `radio`  | `0.1`
-Color (hexadecimal)  | `color`  | `"#0080808080"` (Gris)
+Propiedad           | Variable   | Valor por defecto
+--------------------|------------|-----------------------
+Identificador       | `id`       | `"1"`
+Tipo                | `tipo`     | `""`
+Posición            | `posicion` | `(0.5, 0.5)`
+Radio               | `radio`    | `0.1`
+Color (hexadecimal) | `color`    | `"#0080808080"` (Gris)
 
-El **identificador** se utiliza para mostrar una etiqueta en color negro dentro del nodo al dibujarlo. Se puede definir otro identificador con:
+El **identificador** se utiliza para mostrar una etiqueta en color negro dentro del nodo al dibujarlo. Se puede a un nodo *n* otro identificador con:
 
 ```python
 n.id = "2" # Dibujaría un nodo con un 2 en el centro
@@ -110,19 +116,19 @@ n.id = "" # Dibujaría nodos sin etiqueta
 
 El **tipo** es una variable que podría ser utilizada para definir categorías de nodos [falta agregar ejemplo de asignación de horarios].
 
-La **posición** establece las coordenadas del centro del nodo para ser representado en un plano cartesiano bidimensional. Colocar un nodo en (0, 1) se haría así:
+La **posición** establece las coordenadas del centro del nodo para ser representado en un plano cartesiano bidimensional. Colocar un nodo *n* en (0, 1) se haría así:
 
 ```python
 n.posicion = (0, 1) # 0 para el eje horizontal (x) y 1 para el vertical (y)
 ```
 
-El **radio** controla el tamaño del nodo con base en las unidades del eje de coordenadas, de modo que, por ejemplo, 0.5 de radio corresponderían a un nodo que ocupe una unidad del eje de coordenadas de diámetro. El valor del radio puede ser entero o decimal, de modo que podría asignársele valores a partir de operaciones que den por resultado este tipo de valores. Un radio de 0.3 periódico de un nodo se asigna mediante:
+El **radio** controla el tamaño del nodo con base en las unidades del eje de coordenadas, de modo que, por ejemplo, 0.5 de radio corresponderían a un nodo circular con un diámetro de una unidad respecto del eje de coordenadas. El valor del radio puede ser entero o decimal, de modo que podría asignársele valores a partir de operaciones que den por resultado este tipo de valores. Un radio de 0.3 periódico de un nodo *n* se asigna mediante:
 
 ```python
 n.radio = 1 / 3
 ```
 
-El **color** de un nodo se establece con la función `Color`, que recibe como parámetros el componente rojo, verde, azul y, opcionalmente, alfa (transparencia) en rangos de números enteros de 0 a 255, para generar un color [RGBA](https://developer.mozilla.org/es/docs/Web/CSS/CSS_Colors/Herramienta_para_seleccionar_color). Para asignar cambios de color a un nodo se escribe:
+El **color** de un nodo *n* se establece con la función `Color`, que recibe como parámetros el componente rojo, verde, azul y, opcionalmente, alfa (transparencia) en rangos de números enteros de 0 a 255, para generar un color [RGBA](https://developer.mozilla.org/es/docs/Web/CSS/CSS_Colors/Herramienta_para_seleccionar_color). Para asignar cambios de color a un nodo se escribe:
 
 ```python
 n.Color(255, 255, 0) # Nodo a color amarillo
@@ -132,9 +138,17 @@ n.Color(255, 0, 255, 128) # Nodo a color morado, transparencia media
 
 ![](ejemplos/02Nodos/grafo.png?raw=true)
 
+### Agregar nodo
+
+Para agregar un nodo *n* ya definido a un grafo *G* existente, se usa la función `AgregarNodo` del grafo:
+
+```python
+G.AgregarNodo(n)
+```
+
 ### Arcos
 
-Para establecer una vecindad en un grafo en `G` entre un nodo en `n` y otro en `v` con peso 1, se utiliza la función `ConectarNodos` del grafo:
+Para establecer una vecindad en un grafo *G* entre un nodo *n* y otro *v* con peso 1, se utiliza la función `ConectarNodos` del grafo:
 
 ```python
 G.ConectarNodos(n, v)
@@ -153,11 +167,11 @@ El **peso** inicial de una vecindad se puede modificar pasando como tercer pará
 G.ConectarNodos(n, v, 0.5)
 ```
 
-Este peso se corresponderá con el grosor del arco que conecte a los nodos en la representación del grafo.
+Este peso corresponderá al grosor del arco que conecte a los nodos en la representación del grafo.
 
 ### Dibujar grafo
 
-Las siguientes línea dibujar un grafo en `G` sin título y con título "Título":
+Las siguientes líneas dibujar un grafo *G* sin título y con título "Título":
 
 ```python
 G.DibujarGrafo() # Imagen de un grafo sin título
@@ -168,8 +182,8 @@ G.DibujarGrafo("Título") # Imagen de un grafo con encabezado "Título"
 ## Tareas pendientes
 - [x] ~~Arcos simples~~
 - [x] ~~Configuración de nodos~~
-- [x] Configuración de grafos
-- [x] Completar documentación de arcos
+- [x] ~~Configuración de grafos~~
+- [x] ~~Completar documentación de arcos~~
 - [ ] Eliminar vecindades
 - [ ] Modificar pesos de vecindades
 - [ ] Agregar ejemplo de asignación de horarios
