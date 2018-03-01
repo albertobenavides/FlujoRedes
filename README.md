@@ -147,12 +147,14 @@ for i in range(N): # Para todo i en [0, 1, ..., N - 1]
 
 Al final, se desplegará este grafo en un eje de coordenadas que lleve por título **Ejemplo 2. Nodos**, almacenado en una imagen `PNG` nombrada **grafo** por el nombre por defecto con que se genera el grafo con la instrucción `G.DibujarGrafo("Ejemplo 2. Nodos")`.
 
-Una de las imagen resultantes es:
+Una de las imágenes resultantes es:
 
 ![](https://raw.githubusercontent.com/jbenavidesv87/FlujoRedes/master/ejemplos/02Nodos/grafo.png)
 
 
 ### Ejemplo 3. Arcos
+
+![](https://raw.githubusercontent.com/jbenavidesv87/FlujoRedes/master/ejemplos/03Arcos/grafo.png)
 
 ## Tareas pendientes
 - [x] ~~Arcos simples~~
