@@ -1,4 +1,4 @@
-from math import sqrt, atan, sin, cos
+from math import sqrt
 from os import system
 class Grafo:
 
@@ -25,11 +25,15 @@ class Grafo:
             self.vecinos[n2].add(n1) # Si no es dirigido, también debería haber una conexión bivalente
             self.pesos[(n2, n1)] = peso
 
+    def Distancia(self, p1, p2):
+        d = sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2)
+        return d
+
     def DistanciaTotal(self):
         d = 0.0
         for n in self.vecinos:
             for v in self.vecinos[n]:
-                d = d + sqrt((n.posicion[0] - v.posicion[0]) ** 2 + (n.posicion[1] - v.posicion[1]) ** 2)
+                d += self.Distancia(n.posicion, v.posicion)
         return d
 
     def DibujarGrafo(self, titulo = ""):
@@ -50,25 +54,19 @@ class Grafo:
             i = 1 # Deben ser mayores a 1
             for n in self.nodos:
                 for v in self.vecinos[n]:
+                    d = self.Distancia(n.posicion, v.posicion)
+
                     x1 = n.posicion[0]
                     y1 = n.posicion[1]
 
                     x2 = v.posicion[0]
                     y2 = v.posicion[1]
 
-                    m = (y2 - y1) / (x2 - x1)
-                    alfa = atan(m)
+                    xNodo = n.radio * (x2 - x1) / d
+                    yNodo = n.radio * (y2 - y1) / d
 
-                    xNodo = n.radio * cos(alfa)
-                    yNodo = n.radio * sin(alfa)
-                    xVecino = -v.radio * cos(alfa)
-                    yVecino = -v.radio * sin(alfa)
-
-                    if x1 > x2:
-                        xNodo = xNodo * -1
-                        yNodo = yNodo * -1
-                        xVecino = xVecino * -1
-                        yVecino = yVecino * -1
+                    xVecino = n.radio * (x1 - x2) / d
+                    yVecino = n.radio * (y1 - y2) / d
 
                     x1 = x1 + xNodo
                     x2 = x2 + xVecino

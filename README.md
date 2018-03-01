@@ -8,7 +8,7 @@ Es necesario tener instalados:
 * [`python3`][08100e87]
 * [`gnuplot`][a873f787]
 
-Los usuarios de `Windows` deben agregar los directorios de instalación de ambos programas al `PATH` de `Windows` [[1]](#1) para poder correr los ejemplos desde el `Símbolo del sistema`.
+Los usuarios de `Windows` deben agregar los directorios de instalación de ambos programas al `PATH` de `Windows` [1] para poder correr los ejemplos desde el `Símbolo del sistema`.
 
 ## Documentación
 
@@ -69,7 +69,7 @@ La imagen del grafo generado hasta este punto muestra un eje de coordenadas con 
 
 ![](https://raw.githubusercontent.com/jbenavidesv87/FlujoRedes/master/ejemplos/01GrafoSimple/grafo.png)
 
-De momento [[\*]](*), para trazar arcos en un grafo hacen falta al menos dos nodos vecinos que ocupen una posición distinta, por lo que primero se tendría que agregar otro nodo, *n<sub>2</sub>*, al grafo. En esta ocasión, tras crear el nodo, se modificará su identificador y posición, para finalmente agregarlo al grafo *G* antes definido, todo lo cual se hará mediante las instrucciones:
+De momento [\*], para trazar arcos en un grafo hacen falta al menos dos nodos vecinos que ocupen una posición distinta, por lo que primero se tendría que agregar otro nodo, *n<sub>2</sub>*, al grafo. En esta ocasión, tras crear el nodo, se modificará su identificador y posición, para finalmente agregarlo al grafo *G* antes definido, todo lo cual se hará mediante las instrucciones:
 
 ```python
 [...]
@@ -165,7 +165,7 @@ Una de las imágenes resultantes es:
 - [ ] Agregar imágenes en formato `EPS`
 - [ ] [\*] Agregar conexiones de un mismo nodo consigo mismo
 
-  ###### 1: Instrucciones para [`python3`][862993bb] y [`gnuplot`][2294b1ea].
+  [1]: Instrucciones para [`python3`][862993bb] y [`gnuplot`][2294b1ea].
 
   [862993bb]: https://stackoverflow.com/questions/3701646/how-to-add-to-the-pythonpath-in-windows-7 "Proceso de agregado de carpetas al `PATH` de Windows."
   [08100e87]: https://www.python.org/downloads/ "Descargas de `python3`."
