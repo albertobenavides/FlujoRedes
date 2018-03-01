@@ -15,7 +15,7 @@ from Grafo import Grafo
 from Nodo import Nodo
 ```
 
-Nota: Los usuarios de `Windows` deben agregar los directorios de instalación de ambos programas al `PATH` de `Windows` [1] para poder correr los ejemplos desde el `Símbolo del sistema`.
+Nota: Los usuarios de `Windows` deben agregar los directorios de instalación de ambos programas al `PATH` de `Windows` para poder correr los ejemplos desde el `Símbolo del sistema`. Instrucciones para [`python3`][862993bb] y [`gnuplot`][2294b1ea].
 
 
 ## Documentación
@@ -98,9 +98,9 @@ Identificador  | `id`  |  `"1"`
 Tipo  | `tipo`  | `""`
 Posición  | `posicion`  | `(0.5, 0.5)`
 Radio  | `radio`  | `0.1`
-Color  | `color`  | `"#0080808080"` (Gris)
+Color (hexadecimal)  | `color`  | `"#0080808080"` (Gris)
 
-El **identificador** se utiliza para mostrar una etiqueta en color negro dentro del al dibujarlo. Se puede definir otro identificador con:
+El **identificador** se utiliza para mostrar una etiqueta en color negro dentro del nodo al dibujarlo. Se puede definir otro identificador con:
 
 ```python
 n.id = "2" # Dibujaría un nodo con un 2 en el centro
@@ -125,12 +125,13 @@ n.radio = 1 / 3
 El **color** de un nodo se establece con la función `Color`, que recibe como parámetros el componente rojo, verde, azul y alfa (transparencia) en rangos de números enteros de 0 a 255, para generar un color [RGBA](https://developer.mozilla.org/es/docs/Web/CSS/CSS_Colors/Herramienta_para_seleccionar_color). Para asignar a un nodo el color amarillo se escribe:
 
 ```python
-n.Color(255, 255, 0, 0)
+n.Color(255, 255, 0, 0) # Color amarillo asignado a un nodo
 ```
 
+![](ejemplos/02Nodos/grafo.png?raw=true)
 
 ### Arcos
-
+[Falta]
 
 ### Dibujar grafo
 
@@ -140,6 +141,7 @@ n.Color(255, 255, 0, 0)
 - [x] ~~Arcos simples~~
 - [x] ~~Configuración de nodos~~
 - [x] Configuración de grafos
+- [ ] Completar documentación de arcos
 - [ ] Agregar ejemplo de asignación de horarios
 - [ ] Nodos sólo con contorno y grosor de contorno
 - [ ] Agregar rangos de los ejes del plano a dibujar
@@ -147,8 +149,6 @@ n.Color(255, 255, 0, 0)
 - [ ] Ejemplo de aplicación de flujo en redes
 - [ ] Agregar imágenes en formato `EPS`
 - [ ] Agregar conexiones de un mismo nodo consigo mismo
-
-  [1]: Instrucciones para [`python3`][862993bb] y [`gnuplot`][2294b1ea].
 
   [862993bb]: https://stackoverflow.com/questions/3701646/how-to-add-to-the-pythonpath-in-windows-7 "Proceso de agregado de carpetas al `PATH` de Windows."
   [08100e87]: https://www.python.org/downloads/ "Descargas de `python3`."
