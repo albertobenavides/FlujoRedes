@@ -8,7 +8,7 @@ Es necesario tener instalados:
 * [`python3`][08100e87]
 * [`gnuplot`][a873f787]
 
-Los usuarios de `Windows` deben agregar los directorios de instalación de ambos programas al `PATH` de `Windows` [1] para poder correr los ejemplos desde el `Símbolo de sistema`.
+Los usuarios de `Windows` deben agregar los directorios de instalación de ambos programas al `PATH` de `Windows` [[1]](#1) para poder correr los ejemplos desde el `Símbolo del sistema`.
 
 ## Documentación
 
@@ -65,11 +65,11 @@ G.DibujarGrafo("Ejemplo 1.1 Un nodo")
 
 Cabe señalar que antes de obtener la imagen `PNG`, se crea un archivo `GNU` nombrado `grafo.gnu` (por el nombre del grafo) que contiene las instrucciones para que `gnuplot` procese la información del grafo extraida de `python`.
 
-La imagen del grafo generado hasta este punto muestra un eje de coordenadas con título **Ejemplo 1** donde aparece plasmado un nodo en color gris, con centro en (0.5, 0.5), radio 0.1 e identificador "1":
+La imagen del grafo generado hasta este punto muestra un eje de coordenadas con título **Ejemplo 1.1 Un nodo** donde aparece plasmado un nodo en color gris, con centro en (0.5, 0.5), radio 0.1 e identificador "1":
 
 ![](https://raw.githubusercontent.com/jbenavidesv87/FlujoRedes/master/ejemplos/01GrafoSimple/grafo.png)
 
-De momento [\*], para trazar arcos en un grafo hacen falta al menos dos nodos vecinos que ocupen una posición distinta, por lo que primero se tendría que agregar otro nodo, *n<sub>2</sub>*, al grafo. En esta ocasión, tras crear el nodo, se modificará su identificador y posición, para finalmente agregarlo al grafo *G* antes definido, todo lo cual se hará mediante las instrucciones:
+De momento [[\*]](*), para trazar arcos en un grafo hacen falta al menos dos nodos vecinos que ocupen una posición distinta, por lo que primero se tendría que agregar otro nodo, *n<sub>2</sub>*, al grafo. En esta ocasión, tras crear el nodo, se modificará su identificador y posición, para finalmente agregarlo al grafo *G* antes definido, todo lo cual se hará mediante las instrucciones:
 
 ```python
 [...]
@@ -100,18 +100,70 @@ La nueva imagen muestra a *n<sub>1</sub>* acompañado de *n<sub>2</sub>* con sus
 
 ![](https://raw.githubusercontent.com/jbenavidesv87/FlujoRedes/master/ejemplos/01GrafoSimple/arco.png)
 
-El programa completo de este primer ejemplo puede consultarse en [`ejemplos/01GrafoSimple/main.py`](ejemplos/01GrafoSimple).
+El programa completo de este primer ejemplo puede consultarse en [`ejemplos/01GrafoSimple/main.py`](ejemplos/01GrafoSimple/main.py).
+
+
+### Ejemplo 2. Nodos
+
+En este ejemplo se crearán nodos y se modificarán sus propiedades iniciales de manera aleatoria mediante el uso de las funciones `random()` y `randint()` de la librería `random` de `python`. Al usar `random()` se genera un número decimal aleatorio entre 0 y 1, ambos incluidos; y `randint(a, b)` genera un número entero entre *a* y *b*, ambos incluidos.
+
+```python
+from Grafo import Grafo
+from Nodo import Nodo
+from random import random, randint # librerías de random
+```
+
+Primero se define un número total de nodos a generar, *N*, y se define un grafo *G* que los contendrá.
+
+```python
+N = 20 # Nodos totales
+
+G = Grafo()
+```
+
+Posteriormente, se crearán *N* nodos con la ayuda de la función `range(N)`, la cual devuelve una lista de enteros de 0 hasta *N* - 1. A cada uno de estos *i* ∈ [0, 1, 2, ... , *N* - 1] nodos se les modificarán sus propiedades iniciales:
+* Identificador: *i*
+* Posición: Par ordenado con valores al azar entre 0 y 1 por componente
+* Radio: Al azar entre 0.05 y 0.1
+* Color: Componentes rojo, verde y azul con valores al azar entre 0 (mínimo) y 255 (máximo), y componente alfa (de transparencia) a 128 (punto medio del rango [0, 1, ..., 255])
+
+Después se agregarán al grafo. Estas acciones se realizan con el siguiente código:
+
+```python
+[...]
+for i in range(N): # Para todo i en [0, 1, ..., N - 1]
+    n = Nodo() # Se crea el nodo i
+    n.id = i # Se le asigna el identificador i
+    n.posicion = (random(), random()) # Una posición al azar
+    n.radio = 0.05 + 0.05 * random() # Un radio entre 0.5 y 1
+    n.Color( # Se modifica el color
+        randint(0, 255), # rojo (R)
+        randint(0, 255), # verde (G)
+        randint(0, 255),  # azul (B)
+        128, # alfa (A); transparencia
+    )
+    G.AgregarNodo(n) # Se agrega el nodo i al grafo
+```
+
+Al final, se desplegará este grafo en un eje de coordenadas que lleve por título **Ejemplo 2. Nodos**, almacenado en una imagen `PNG` nombrada **grafo** por el nombre por defecto con que se genera el grafo con la instrucción `G.DibujarGrafo("Ejemplo 2. Nodos")`.
+
+Una de las imagen resultantes es:
+
+![](https://raw.githubusercontent.com/jbenavidesv87/FlujoRedes/master/ejemplos/02Nodos/grafo.png)
+
+
+### Ejemplo 3. Arcos
 
 ## Tareas pendientes
-- [x] Arcos simples
-- [ ] Configuración de nodos
+- [x] ~~Arcos simples~~
+- [x] ~~Configuración de nodos~~
 - [ ] Configuración de grafos
 - [ ] Ejemplos de aplicación con algoritmo genético
 - [ ] Ejemplo de aplicación de flujo en redes
 - [ ] Agregar imágenes en formato `EPS`
 - [ ] [\*] Agregar conexiones de un mismo nodo consigo mismo
 
-  [1]: Instrucciones para [`python3`][862993bb] y [`gnuplot`][2294b1ea].
+  ###### 1: Instrucciones para [`python3`][862993bb] y [`gnuplot`][2294b1ea].
 
   [862993bb]: https://stackoverflow.com/questions/3701646/how-to-add-to-the-pythonpath-in-windows-7 "Proceso de agregado de carpetas al `PATH` de Windows."
   [08100e87]: https://www.python.org/downloads/ "Descargas de `python3`."

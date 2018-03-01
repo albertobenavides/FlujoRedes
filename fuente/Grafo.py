@@ -21,7 +21,7 @@ class Grafo:
             self.AgregarNodo(n2)
         self.vecinos[n1].add(n2)
         self.pesos[(n1, n2)] = peso
-        if self.dirigido:
+        if not self.dirigido:
             self.vecinos[n2].add(n1) # Si no es dirigido, también debería haber una conexión bivalente
             self.pesos[(n2, n1)] = peso
 
@@ -42,7 +42,9 @@ class Grafo:
             print("set title'" + titulo + "'", file = f)
 
             for n in self.nodos:
-                print("set label '" + str(n.id) + "' at " + str(n.posicion[0]) + "," + str(n.posicion[1]) + " left offset char -" + str(0.4 * len(n.id)) + ",0", file = f) # https://stackoverflow.com/questions/23690551/how-do-you-assign-a-label-when-using-set-object-circle-in-gnuplot
+                if n.id != None:
+                    n.id = str(n.id)
+                    print("set label '" + str(n.id) + "' at " + str(n.posicion[0]) + "," + str(n.posicion[1]) + " left offset char -" + str(0.4 * len(n.id)) + ",0", file = f) # https://stackoverflow.com/questions/23690551/how-do-you-assign-a-label-when-using-set-object-circle-in-gnuplot
                 print("set object circle at " + str(n.posicion[0]) + "," + str(n.posicion[1]) + " fillcolor rgb '" + n.color + "' fillstyle solid noborder size " + str(n.radio), file = f) # http://www.bersch.net/gnuplot-doc/layers.html
 
             i = 1 # Deben ser mayores a 1
