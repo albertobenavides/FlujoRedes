@@ -63,7 +63,7 @@ for i in range(N):
     G.AgregarNodo(n)
 ```
 
-Finalmente, por cada nodo *n<sub>i</sub>* dado *i* &in; [0, 1, ..., *N* - 1] y con una probabilidad de *p<sub>v</sub>* se intenta establecer en tres intentos una vecindad con algún nodo al azar entre el resto de los nodos del grafo *G*. Por cada intento exitoso de establecer una vecindad, se elige un vecino *v* al azar y se conecta con el nodo *n<sub>i</sub>* correspondiente con uno peso elegido al azar en un rango [0; 2]. Lo anterior se realiza en el siguiente ciclo:
+Finalmente, por cada nodo *n<sub>i</sub>* dado *i* &in; [0, 1, ..., *N* - 1] y con una probabilidad de *p<sub>v</sub>* se intenta establecer una vecindad con algún nodo al azar entre el resto de los nodos del grafo *G*. Esta probabilidad de realiza tres veces por cada nodo, eligiendo en cada ocasión un nodo al azar entre los restantes. Luego, por cada intento exitoso de establecer una vecindad, se elige un vecino *v* al azar y se conecta con el nodo *n<sub>i</sub>* correspondiente con un peso elegido al azar en un rango [0; 2]. Lo anterior se realiza en el siguiente ciclo:
 
 ```python
 for n in G.nodos:
