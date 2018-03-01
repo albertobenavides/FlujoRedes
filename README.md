@@ -24,7 +24,7 @@ La carpeta [`ejemplos`](ejemplos/) contiene los códigos que aquí se explican.
 
 ### Notación
 
-Se usará *G*, *n* u otro tipo de variables en este formato para referirse tanto a un grafo *G* almacenado en la variable `G`, o a un nodo *n* almacenado en la variable `n`, etcétera; el contexto será lo suficientemente claro para evitar confusiones.
+Se usará *G*, *n* u otro tipo de variables en este formato para referirse a un grafo *G* almacenado en la variable `G` como al grafo mismo; o tanto a un nodo *n* almacenado en la variable `n` como al nodo mismo, etcétera; el contexto será lo suficientemente claro para evitar confusiones.
 
 ### Estructura mínima
 
@@ -45,7 +45,7 @@ G.DibujarGrafo("Ejemplo 1.1 Un nodo")
 
 ### Grafos
 
-Declarar un grafo y almacenarlo en la variable `G` se logra por la instrucción:
+Declarar un grafo y almacenarlo en `G` se logra por la instrucción:
 
 ```
 G = Grafo()
@@ -90,7 +90,7 @@ Los nodos, vecinos y pesos se describirán en las secciones siguientes.
 
 ### Nodos
 
-De manera análoga a la creación de un grafo, para crear un nodo *n* almacenado en la variable `n` se escribe:
+De manera análoga a la creación de un grafo, para crear un nodo y almacenarlo en `n` se escribe:
 
 ```python
 n = Nodo()
@@ -106,7 +106,7 @@ Posición            | `posicion` | `(0.5, 0.5)`
 Radio               | `radio`    | `0.1`
 Color (hexadecimal) | `color`    | `"#0080808080"` (Gris)
 
-El **identificador** se utiliza para mostrar una etiqueta en color negro dentro del nodo al dibujarlo. Se puede a un nodo *n* otro identificador con:
+El **identificador** se utiliza para mostrar una etiqueta en color negro dentro del nodo al dibujarlo. A un nodo *n* se le puede poner otro identificador con:
 
 ```python
 n.id = "2" # Dibujaría un nodo con un 2 en el centro
