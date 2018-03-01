@@ -57,7 +57,7 @@ Vecinos   | `vecinos`  | `dict()`
 
 El **nombre** del grafo indica el nombre de los archivos de imagen o instrucciones de `gnuplot` que se generarán de este grafo. Así, un grafo generado de manera predeterminada produciría archivos de imagen `grafo.png`.
 
-Cambiar el nombre de un grafo almacenado en `G` por ["arco"](ejemplos/01GrafoSimple/main.py) se realiza del modo siguiente:
+Cambiar el nombre de un grafo en `G` por ["arco"](ejemplos/01GrafoSimple/main.py) se realiza del modo siguiente:
 
 ```python
 G.nombre = "arco"
@@ -122,31 +122,61 @@ El **radio** controla el tamaño del nodo con base en las unidades del eje de co
 n.radio = 1 / 3
 ```
 
-El **color** de un nodo se establece con la función `Color`, que recibe como parámetros el componente rojo, verde, azul y alfa (transparencia) en rangos de números enteros de 0 a 255, para generar un color [RGBA](https://developer.mozilla.org/es/docs/Web/CSS/CSS_Colors/Herramienta_para_seleccionar_color). Para asignar a un nodo el color amarillo se escribe:
+El **color** de un nodo se establece con la función `Color`, que recibe como parámetros el componente rojo, verde, azul y, opcionalmente, alfa (transparencia) en rangos de números enteros de 0 a 255, para generar un color [RGBA](https://developer.mozilla.org/es/docs/Web/CSS/CSS_Colors/Herramienta_para_seleccionar_color). Para asignar cambios de color a un nodo se escribe:
 
 ```python
-n.Color(255, 255, 0, 0) # Color amarillo asignado a un nodo
+n.Color(255, 255, 0) # Nodo a color amarillo
+
+n.Color(255, 0, 255, 128) # Nodo a color morado, transparencia media
 ```
 
 ![](ejemplos/02Nodos/grafo.png?raw=true)
 
 ### Arcos
-[Falta]
+
+Para establecer una vecindad en un grafo en `G` entre un nodo en `n` y otro en `v` con peso 1, se utiliza la función `ConectarNodos` del grafo:
+
+```python
+G.ConectarNodos(n, v)
+```
+
+Esta función realiza las siguientes acciones:
+1. Agrega ambos nodos al grafo, en caso de no estarlo.
+2. Establece una vecindad que va de *n* a *v*
+3. Establece un peso de 1 para dicha vecindad
+
+Además, si se trata de un grafo no dirigido, realiza los pasos 2 y 3 de *v* a *n*.
+
+El **peso** inicial de una vecindad se puede modificar pasando como tercer parámetro de la función `ConectarNodos` el peso que se desee. Una vecindad con peso 0.5 entre *n* y *v* quedaría:
+
+```python
+G.ConectarNodos(n, v, 0.5)
+```
+
+Este peso se corresponderá con el grosor del arco que conecte a los nodos en la representación del grafo.
 
 ### Dibujar grafo
 
-[Falta agregar rangos de los ejes del plano a dibujar]
+Las siguientes línea dibujar un grafo en `G` sin título y con título "Título":
+
+```python
+G.DibujarGrafo() # Imagen de un grafo sin título
+
+G.DibujarGrafo("Título") # Imagen de un grafo con encabezado "Título"
+```
 
 ## Tareas pendientes
 - [x] ~~Arcos simples~~
 - [x] ~~Configuración de nodos~~
 - [x] Configuración de grafos
-- [ ] Completar documentación de arcos
+- [x] Completar documentación de arcos
+- [ ] Eliminar vecindades
+- [ ] Modificar pesos de vecindades
 - [ ] Agregar ejemplo de asignación de horarios
 - [ ] Nodos sólo con contorno y grosor de contorno
 - [ ] Agregar rangos de los ejes del plano a dibujar
 - [ ] Ejemplos de aplicación con algoritmo genético para tipos de nodo
-- [ ] Ejemplo de aplicación de flujo en redes
+- [ ] Ejemplo de aplicación de flujo en redes ()
 - [ ] Agregar imágenes en formato `EPS`
 - [ ] Agregar conexiones de un mismo nodo consigo mismo
 

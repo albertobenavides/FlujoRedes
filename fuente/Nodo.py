@@ -7,7 +7,7 @@ class Nodo:
         self.radio = 0.1
         self.color = "#0080808080"
 
-    def Color(self, r, g, b, a):
+    def Color(self, r, g, b, a = 0):
         self.color = "#"
         self.color += format(a, '02x')
         self.color += format(r, '02x')
