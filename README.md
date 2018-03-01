@@ -8,49 +8,23 @@ Es necesario tener instalados:
 * [`python3`][08100e87]
 * [`gnuplot`][a873f787]
 
-Los usuarios de `Windows` deben agregar los directorios de instalación de ambos programas al `PATH` de `Windows` [1] para poder correr los ejemplos desde el `Símbolo del sistema`.
+También se requiere incluir las librerías [`Grafo`](fuente/Grafo.py) y [`Nodo`](fuente/Nodo.py).
+
+```python
+from Grafo import Grafo
+from Nodo import Nodo
+```
+
+Nota: Los usuarios de `Windows` deben agregar los directorios de instalación de ambos programas al `PATH` de `Windows` [1] para poder correr los ejemplos desde el `Símbolo del sistema`.
+
 
 ## Documentación
 
-La carpeta `ejemplos` contiene los códigos que aquí se explican, en orden de aparición.
+La carpeta [`ejemplos`](ejemplos/) contiene los códigos que aquí se explican.
 
-### Ejemplo 1. Grafo simple
+### Estructura mínima
 
-Para crear un grafo *G* basta con escribir el siguiente código:
-
-``` python
-from Grafo import Grafo
-from Nodo import Nodo
-
-G = Grafo()
-```
-
-Por defecto, un grafo inicializado de esta manera tiene las siguientes propiedades:
-* Nombre: "grafo" (cadena de texto)
-* Dirigido: No
-
-Para agregar un nodo *n<sub>1</sub>*, hay que declararlo primero y luego añadirlo a un grafo previamente existente:
-
-```python
-[...]
-n1 = Nodo()
-G.AgregarNodo(n1)
-```
-
-De esta manera, el grafo *G* contendrá al nodo *n1* que, a su vez, tendrá las siguientes propiedades iniciales:
-* Identificador: "1" (cadena de texto)
-* Radio: 0.1
-* Color: Gris (8080808000<sub>hex</sub>)
-* Posición: (0.5, 0.5)
-
-Generar una imagen `PNG` con nombre de archivo `grafo.png` y título **Ejemplo 1.1 Un nodo**, requiere una línea de código más:
-
-```python
-[...]
-G.DibujarGrafo("Ejemplo 1.1 Un nodo")
-```
-
-Hasta aquí, el código de este primer ejemplo queda como sigue:
+ Para definir un grafo con un nodo y obtener una imagen `PNG` del mismo, basta con escribir el siguiente [código](ejemplos/01GrafoSimple/main.py):
 
 ```python
 from Grafo import Grafo
@@ -63,107 +37,116 @@ G.AgregarNodo(n1)
 G.DibujarGrafo("Ejemplo 1.1 Un nodo")
 ```
 
-Cabe señalar que antes de obtener la imagen `PNG`, se crea un archivo `GNU` nombrado `grafo.gnu` (por el nombre del grafo) que contiene las instrucciones para que `gnuplot` procese la información del grafo extraida de `python`.
+![](ejemplos/01GrafoSimple/grafo.png?raw=true)
 
-La imagen del grafo generado hasta este punto muestra un eje de coordenadas con título **Ejemplo 1.1 Un nodo** donde aparece plasmado un nodo en color gris, con centro en (0.5, 0.5), radio 0.1 e identificador "1":
+### Grafos
 
-![](https://raw.githubusercontent.com/jbenavidesv87/FlujoRedes/master/ejemplos/01GrafoSimple/grafo.png)
-
-De momento [\*], para trazar arcos en un grafo hacen falta al menos dos nodos vecinos que ocupen una posición distinta, por lo que primero se tendría que agregar otro nodo, *n<sub>2</sub>*, al grafo. En esta ocasión, tras crear el nodo, se modificará su identificador y posición, para finalmente agregarlo al grafo *G* antes definido, todo lo cual se hará mediante las instrucciones:
-
-```python
-[...]
-n2 = Nodo()
-n2.id = "2" # Identificador modificado
-n2.posicion = (1,1) # Centro en (1, 1)
-G.AgregarNodo(n2)
+```
+G = Grafo()
 ```
 
-Enseguida se conectan ambos nodos para establecer su vecindad mediante la instrucción:
+Esta instrucción crearía un **grafo** *G* almacenado en la variable `G` con las siguientes propiedades:
+
+Propiedad | Variable   | Valor por defecto
+----------|------------|------------------
+Nombre    | `nombre`   | `"grafo"`
+Dirigido  | `dirigido` | `False`
+Nodos     | `nodos`    | `[]`
+Pesos     | `pesos`    | `dict()`
+Vecinos   | `vecinos`  | `dict()`
+
+El **nombre** del grafo indica el nombre de los archivos de imagen o instrucciones de `gnuplot` que se generarán de este grafo. Así, un grafo generado de manera predeterminada produciría archivos de imagen `grafo.png`.
+
+Cambiar el nombre de un grafo almacenado en `G` por ["arco"](ejemplos/01GrafoSimple/main.py) se realiza del modo siguiente:
 
 ```python
-[...]
-G.ConectarNodos(n1, n2)
-```
-
-Un arco creado de este modo, tiene de manera predefinida un peso de 1 y una conexión bidireccional entre ambos nodos, ya que al no ser un grafo dirigido, se considera que ambos nodos están conectados entre sí.
-
-Por último, se cambia el nombre del grafo a **arco** y se dibuja bajo el título **Ejemplo 1.2 Un arco**. Esto generará los archivos `arco.gnu` y `arco.png` correspondientes al nuevo nombre del grafo. El código para realizar esto es:
-
-```python
-[...]
 G.nombre = "arco"
-G.DibujarGrafo("Ejemplo 1.2 Un arco")
 ```
 
-La nueva imagen muestra a *n<sub>1</sub>* acompañado de *n<sub>2</sub>* con sus propiedades predeterminadas pero con centro en (1, 1) e identificador "2"; ambos nodos unidos mediante un arco que simboliza su vecindad, como se aprecia en la imagen:
-
-![](https://raw.githubusercontent.com/jbenavidesv87/FlujoRedes/master/ejemplos/01GrafoSimple/arco.png)
-
-El programa completo de este primer ejemplo puede consultarse en [`ejemplos/01GrafoSimple/main.py`](ejemplos/01GrafoSimple/main.py).
-
-
-### Ejemplo 2. Nodos
-
-En este ejemplo se crearán nodos y se modificarán sus propiedades iniciales de manera aleatoria mediante el uso de las funciones `random()` y `randint()` de la librería `random` de `python`. Al usar `random()` se genera un número decimal aleatorio entre 0 y 1, ambos incluidos; y `randint(a, b)` genera un número entero entre *a* y *b*, ambos incluidos.
+Para definir si un grafo *G* es **dirigido**, basta con especificarlo mediante una booleana:
 
 ```python
-from Grafo import Grafo
-from Nodo import Nodo
-from random import random, randint # librerías de random
+G.dirigido = True # G es dirigido
+
+G.dirigido = False # G no es dirigido
 ```
 
-Primero se define un número total de nodos a generar, *N*, y se define un grafo *G* que los contendrá.
+Un grafo no dirigido, mantiene a los nodos vecinos conectados uno con el otro y representa esto mediante arcos sin flecha de dirección.
+
+![](ejemplos/01GrafoSimple/arco.png?raw=true)
+
+Un grafo dirigido considera que cada nodo podría dirigirse a vecinos que no necesariamente se dirijan a él, lo que se representa mediante arcos con una flecha que indica esta dirección.
+
+![](ejemplos/03Arcos/grafo.png?raw=true)
+
+Los nodos, vecinos y pesos se describirán en las secciones siguientes.
+
+
+### Nodos
+
+De manera análoga a la creación de un grafo, para crear un nodo *n* almacenado en la variable `n` se escribe:
 
 ```python
-N = 20 # Nodos totales
-
-G = Grafo()
+n = Nodo()
 ```
 
-Posteriormente, se crearán *N* nodos con la ayuda de la función `range(N)`, la cual devuelve una lista de enteros de 0 hasta *N* - 1. A cada uno de estos *i* ∈ [0, 1, 2, ... , *N* - 1] nodos se les modificarán sus propiedades iniciales:
-* Identificador: *i*
-* Posición: Par ordenado con valores al azar entre 0 y 1 por componente
-* Radio: Al azar entre 0.05 y 0.1
-* Color: Componentes rojo, verde y azul con valores al azar entre 0 (mínimo) y 255 (máximo), y componente alfa (de transparencia) a 128 (punto medio del rango [0, 1, ..., 255])
+Por defecto, un nodo tiene las siguientes propiedades:
 
-Después se agregarán al grafo. Estas acciones se realizan con el siguiente código:
+Propiedad  | Variable  | Valor por defecto
+--|---|--
+Identificador  | `id`  |  `"1"`
+Tipo  | `tipo`  | `""`
+Posición  | `posicion`  | `(0.5, 0.5)`
+Radio  | `radio`  | `0.1`
+Color  | `color`  | `"#0080808080"` (Gris)
+
+El **identificador** se utiliza para mostrar una etiqueta en color negro dentro del al dibujarlo. Se puede definir otro identificador con:
 
 ```python
-[...]
-for i in range(N): # Para todo i en [0, 1, ..., N - 1]
-    n = Nodo() # Se crea el nodo i
-    n.id = i # Se le asigna el identificador i
-    n.posicion = (random(), random()) # Una posición al azar
-    n.radio = 0.05 + 0.05 * random() # Un radio entre 0.5 y 1
-    n.Color( # Se modifica el color
-        randint(0, 255), # rojo (R)
-        randint(0, 255), # verde (G)
-        randint(0, 255),  # azul (B)
-        128, # alfa (A); transparencia
-    )
-    G.AgregarNodo(n) # Se agrega el nodo i al grafo
+n.id = "2" # Dibujaría un nodo con un 2 en el centro
+
+n.id = "" # Dibujaría nodos sin etiqueta
 ```
 
-Al final, se desplegará este grafo en un eje de coordenadas que lleve por título **Ejemplo 2. Nodos**, almacenado en una imagen `PNG` nombrada **grafo** por el nombre por defecto con que se genera el grafo con la instrucción `G.DibujarGrafo("Ejemplo 2. Nodos")`.
+El **tipo** es una variable que podría ser utilizada para definir categorías de nodos [falta agregar ejemplo de asignación de horarios].
 
-Una de las imágenes resultantes es:
+La **posición** establece las coordenadas del centro del nodo para ser representado en un plano cartesiano bidimensional. Colocar un nodo en (0, 1) se haría así:
 
-![](https://raw.githubusercontent.com/jbenavidesv87/FlujoRedes/master/ejemplos/02Nodos/grafo.png)
+```python
+n.posicion = (0, 1) # 0 para el eje horizontal (x) y 1 para el vertical (y)
+```
+
+El **radio** controla el tamaño del nodo con base en las unidades del eje de coordenadas, de modo que, por ejemplo, 0.5 de radio corresponderían a un nodo que ocupe una unidad del eje de coordenadas de diámetro. El valor del radio puede ser entero o decimal, de modo que podría asignársele valores a partir de operaciones que den por resultado este tipo de valores. Un radio de 0.3 periódico de un nodo se asigna mediante:
+
+```python
+n.radio = 1 / 3
+```
+
+El **color** de un nodo se establece con la función `Color`, que recibe como parámetros el componente rojo, verde, azul y alfa (transparencia) en rangos de números enteros de 0 a 255, para generar un color [RGBA](https://developer.mozilla.org/es/docs/Web/CSS/CSS_Colors/Herramienta_para_seleccionar_color). Para asignar a un nodo el color amarillo se escribe:
+
+```python
+n.Color(255, 255, 0, 0)
+```
 
 
-### Ejemplo 3. Arcos
+### Arcos
 
-![](https://raw.githubusercontent.com/jbenavidesv87/FlujoRedes/master/ejemplos/03Arcos/grafo.png)
+
+### Dibujar grafo
+
+[Falta agregar rangos de los ejes del plano a dibujar]
 
 ## Tareas pendientes
 - [x] ~~Arcos simples~~
 - [x] ~~Configuración de nodos~~
-- [ ] Configuración de grafos
-- [ ] Ejemplos de aplicación con algoritmo genético
+- [x] Configuración de grafos
+- [ ] Agregar ejemplo de asignación de horarios
+- [ ] Nodos sólo con contorno y grosor de contorno
+- [ ] Agregar rangos de los ejes del plano a dibujar
+- [ ] Ejemplos de aplicación con algoritmo genético para tipos de nodo
 - [ ] Ejemplo de aplicación de flujo en redes
 - [ ] Agregar imágenes en formato `EPS`
-- [ ] [\*] Agregar conexiones de un mismo nodo consigo mismo
+- [ ] Agregar conexiones de un mismo nodo consigo mismo
 
   [1]: Instrucciones para [`python3`][862993bb] y [`gnuplot`][2294b1ea].
 

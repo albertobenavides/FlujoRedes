@@ -9,6 +9,13 @@ N = 20 # Nodos totales
 
 G = Grafo()
 
+n = Nodo()
+n.id = ""
+n.posicion = (0, 0)
+n.radio = 0.2
+n.Color(255, 0, 0, 0)
+G.AgregarNodo(n)
+
 for i in range(N):
     n = Nodo()
     n.id = i
