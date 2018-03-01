@@ -41,8 +41,9 @@ G.dirigido = True
 
 Inmediatamente después, se hace un ciclo de *i* &in; [0, 1, 2, ..., *N* - 1], donde se crean *N* nodos, asignándosele a cada nodo *n<sub>i</sub>* un identificador *i*, un radio igual a *r<sub>n</sub>*, un color RGB al azar y una posición (*x<sub>i</sub>*, *y<sub>i</sub>*) a lo largo de la circunferencia que formarán que dependerá de las funciones
 
-<p style="text-align: center;"> *x<sub>i</sub>* = 0.5 + *r* &times; cos( *&theta;i* ) </p>
-<p style="text-align: center;"> *y<sub>i</sub>* = 0.5 + *r* &times; sen( *&theta;i* ) </p>
+*x<sub>i</sub>* = 0.5 + *r* &times; cos( *&theta;i* )
+
+*y<sub>i</sub>* = 0.5 + *r* &times; sen( *&theta;i* )
 
 Y se agregará cada nodo *n<sub>i</sub>* al grafo *G*, todo lo cual corresponde al código:
 
