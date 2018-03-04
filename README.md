@@ -146,6 +146,27 @@ Para agregar un nodo *n* ya definido a un grafo *G* existente, se usa la funció
 G.AgregarNodo(n)
 ```
 
+### Obtener un nodo por su identificador
+
+Es posible recuperar un nodo por su identificador con el método `NodoConId` de un grafo. Obtener del grafo *G* el nodo con identificador *i* y almacenarlo en `n` se realiza como sigue:
+
+```python
+n = G.NodoConId(i)
+```
+
+Observaciones:
+* El método devuelve el primer nodo que tenga el identificador *i* en orden de agregación.
+* En caso de que no haya nodos con ese identificador, el método devuelve `None`.
+
+
+### Eliminar un nodo
+
+Es posible eliminar un nodo *N* con sus vecindades y pesos asociados de un grafo *G* con:
+
+```python
+G.EliminarNodo(n)
+```
+
 ### Arcos
 
 Para establecer una vecindad en un grafo *G* entre un nodo *n* y otro *v* con peso 1, se utiliza la función `ConectarNodos` del grafo:
@@ -169,6 +190,33 @@ G.ConectarNodos(n, v, 0.5)
 
 Este peso corresponderá al grosor del arco que conecte a los nodos en la representación del grafo.
 
+
+### Modificar pesos de las vecindades de un nodo
+
+Se puede asignar a las vecindades de un nodo *n* en un grafo *G*, un peso *p* incluyendo la instrucción:
+
+```python
+G.ModificarPesos(n, p)
+```
+
+Observaciones:
+* Si *G* es un grafo dirigido, se actualizan los pesos de las vecindades creadas a partir del nodo *n* **pero** no las que se dirijan al nodo *n*, en caso de haberlas.
+* Si *G* es un grafo no dirigido, se modifican **todos** los pesos de las vecindades del nodo *n*.
+
+
+### Eliminar vecindades de un nodo
+
+Para eliminar todas las vecindades de un nodo *n* en un grafo *G*, basta con usar la función:
+
+```python
+G.EliminarVecindades(n)
+```
+
+Observaciones:
+* Si *G* es un grafo dirigido, se eliminan las vecindades creadas a partir del nodo *n* **pero** no las se dirijan al nodo *n*, en caso haberlas.
+* Si *G* es un grafo no dirigido, se eliminan **todas** las vecindades del nodo *n*.
+* Eliminar vecindades también elimina los pesos asignados a dichas vecindades.
+
 ### Dibujar grafo
 
 Las siguientes líneas dibujar un grafo *G* sin título y con título "Título":
@@ -184,8 +232,9 @@ G.DibujarGrafo("Título") # Imagen de un grafo con encabezado "Título"
 - [x] ~~Configuración de nodos~~
 - [x] ~~Configuración de grafos~~
 - [x] ~~Completar documentación de arcos~~
-- [ ] Eliminar vecindades
-- [ ] Modificar pesos de vecindades
+- [x] ~~Eliminar vecindades~~
+- [x] ~~Modificar pesos de vecindades~~
+- [ ] Guardar grafos en archivos de texto
 - [ ] Agregar ejemplo de asignación de horarios
 - [ ] Nodos sólo con contorno y grosor de contorno
 - [ ] Agregar rangos de los ejes del plano a dibujar

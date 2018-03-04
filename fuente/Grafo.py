@@ -11,8 +11,21 @@ class Grafo:
 
     def AgregarNodo(self, n):
         self.nodos.append(n)
-        if not n in self.vecinos: # vecindad de v
+        if not n in self.vecinos: # vecindad de n
             self.vecinos[n] = set()
+
+    def NodoConId(self, id):
+        for n in self.nodos:
+            if n.id == id:
+                return n
+        return None
+
+    def EliminarNodo(self, n):
+        temp = self.dirigido
+        self.dirigido = False
+        self.EliminarVecindades(n)
+        self.dirigido = temp
+        self.nodos.remove(n)
 
     def ConectarNodos(self, n1, n2, peso = 1):
         if n1 not in self.nodos:
@@ -24,6 +37,24 @@ class Grafo:
         if not self.dirigido:
             self.vecinos[n2].add(n1) # Si no es dirigido, también debería haber una conexión bivalente
             self.pesos[(n2, n1)] = peso
+
+    def ModificarPesos(self, n, p):
+        for v in self.vecinos[n]:
+            self.pesos[(n, v)] = p
+        if not self.dirigido: # Si no es un grafo dirigido
+            for k in list(self.vecinos): # Por cada k nodos que tengan vecindades
+                if n in self.vecinos[k]: # Si n está en una de las vecindades de k
+                    self.pesos[(k, n)] = p
+
+    def EliminarVecindades(self, n):
+        for v in self.vecinos[n]: # Por cada vecino de n
+            del(self.pesos[(n, v)]) # Eliminar los pesos entre n y sus vecinos
+        self.vecinos[n] = set() # Se eliminan los vecinos de n
+        if not self.dirigido: # Si no es un grafo dirigido
+            for k in list(self.vecinos): # Por cada k nodos que tengan vecindades
+                if n in self.vecinos[k]: # Si n está en una de las vecindades de k
+                    del(self.pesos[(k, n)]) # Se eliminan sus pesos
+                    self.vecinos[k].remove(n) # Y se remueve dicha vecindad con n
 
     def Distancia(self, p1, p2):
         d = sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2)
@@ -47,11 +78,14 @@ class Grafo:
             print("set title'" + titulo + "'", file = f)
 
             for n in self.nodos:
+                temp = n.id
                 n.id = str(n.id)
                 if len(n.id) > 0:
                     n.id = str(n.id)
                     print("set label '" + str(n.id) + "' at " + str(n.posicion[0]) + "," + str(n.posicion[1]) + " left offset char -" + str(0.4 * len(n.id)) + ",0", file = f) # https://stackoverflow.com/questions/23690551/how-do-you-assign-a-label-when-using-set-object-circle-in-gnuplot
                 print("set object circle at " + str(n.posicion[0]) + "," + str(n.posicion[1]) + " fillcolor rgb '" + n.color + "' fillstyle solid noborder size " + str(n.radio), file = f) # http://www.bersch.net/gnuplot-doc/layers.html
+
+                n.id = temp # Corregida el cambio de nombre del identificador
 
             i = 1 # Deben ser mayores a 1
             for n in self.nodos:
@@ -85,6 +119,6 @@ class Grafo:
 
             print("set style fill transparent solid 0.5 noborder", file = f)
             print("plot [-0.1:1.1][-0.1:1.1] NaN t''", file = f)
-            print("quit", file = f)
+            #print("quit", file = f)
 
         system("gnuplot " + self.nombre +".gnu")
