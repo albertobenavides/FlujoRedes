@@ -1,5 +1,5 @@
-set terminal postscript eps enhanced color
-set output 'noDirigido.eps'
+set terminal png truecolor
+set output 'noDirigido.png'
 set key off
 set size square
 unset colorbox

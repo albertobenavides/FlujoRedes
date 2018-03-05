@@ -1,9 +1,11 @@
-%!PS-Adobe-2.0 EPSF-2.0
+%!PS-Adobe-2.0
 %%Title: noDirigido.eps
 %%Creator: gnuplot 5.2 patchlevel 2
-%%CreationDate: Sun Mar 04 17:10:11 2018
+%%CreationDate: Mon Mar 05 00:30:36 2018
 %%DocumentFonts: (atend)
-%%BoundingBox: 50 50 410 302
+%%BoundingBox: 50 50 554 770
+%%Orientation: Landscape
+%%Pages: (atend)
 %%EndComments
 %%BeginProlog
 /gnudict 256 dict def
@@ -16,13 +18,13 @@ gnudict begin
 /Blacktext false def
 /Solid false def
 /Dashlength 1 def
-/Landscape false def
+/Landscape true def
 /Level1 false def
 /Level3 false def
 /Rounded false def
 /ClipToBoundingBox false def
 /SuppressPDFMark false def
-/TransparentPatterns true def
+/TransparentPatterns false def
 /gnulinewidth 5.000 def
 /userlinewidth gnulinewidth def
 /Gamma 1.0 def
@@ -43,7 +45,7 @@ gnudict begin
 /vpt vpt_ def
 /doclip {
   ClipToBoundingBox {
-    newpath 50 50 moveto 410 50 lineto 410 302 lineto 50 302 lineto closepath
+    newpath 50 50 moveto 554 50 lineto 554 770 lineto 50 770 lineto closepath
     clip
   } if
 } def
@@ -64,11 +66,11 @@ gnudict begin
 /Gshow {show} def   % May be redefined later in the file to support UTF-8
 /vpt2 vpt 2 mul def
 /hpt2 hpt 2 mul def
-/Lshow {currentpoint stroke M 0 vshift R
+/Lshow {currentpoint stroke M 0 vshift R 
 	Blacktext {gsave 0 setgray textshow grestore} {textshow} ifelse} def
 /Rshow {currentpoint stroke M dup stringwidth pop neg vshift R
 	Blacktext {gsave 0 setgray textshow grestore} {textshow} ifelse} def
-/Cshow {currentpoint stroke M dup stringwidth pop -2 div vshift R
+/Cshow {currentpoint stroke M dup stringwidth pop -2 div vshift R 
 	Blacktext {gsave 0 setgray textshow grestore} {textshow} ifelse} def
 /UP {dup vpt_ mul /vpt exch def hpt_ mul /hpt exch def
   /hpt2 hpt 2 mul def /vpt2 vpt 2 mul def} def
@@ -272,7 +274,7 @@ gnudict begin
 /PentE {stroke [] 0 setdash gsave
   translate 0 hpt M 4 {72 rotate 0 hpt L} repeat
   closepath stroke grestore} def
-/CircE {stroke [] 0 setdash
+/CircE {stroke [] 0 setdash 
   hpt 0 360 arc stroke} def
 /Opaque {gsave closepath 1 setgray fill grestore 0 setgray closepath} def
 /DiaW {stroke [] 0 setdash vpt add M
@@ -292,7 +294,7 @@ gnudict begin
 /PentW {stroke [] 0 setdash gsave
   translate 0 hpt M 4 {72 rotate 0 hpt L} repeat
   Opaque stroke grestore} def
-/CircW {stroke [] 0 setdash
+/CircW {stroke [] 0 setdash 
   hpt 0 360 arc Opaque stroke} def
 /BoxFill {gsave Rec 1 setgray fill grestore} def
 /Density {
@@ -349,7 +351,7 @@ dup 2 lt
 	bind def
 /KeepColor {currentrgbcolor [/Pattern /DeviceRGB] setcolorspace} bind def
 << Tile8x8
- /PaintProc {0.5 setlinewidth pop 0 0 M 8 8 L 0 8 M 8 0 L stroke}
+ /PaintProc {0.5 setlinewidth pop 0 0 M 8 8 L 0 8 M 8 0 L stroke} 
 >> matrix makepattern
 /Pat1 exch def
 << Tile8x8
@@ -513,7 +515,7 @@ currentdict end definefont
 /XYsave    { [( ) 1 2 true false 3 ()] } bind def
 /XYrestore { [( ) 1 2 true false 4 ()] } bind def
 /Helvetica reencodeCP1252 def
-Level1 SuppressPDFMark or
+Level1 SuppressPDFMark or 
 {} {
 /SDict 10 dict def
 systemdict /pdfmark known not {
@@ -525,7 +527,7 @@ SDict begin [
   /Creator (gnuplot 5.2 patchlevel 2)
 %  /Producer (gnuplot)
 %  /Keywords ()
-  /CreationDate (Sun Mar 04 17:10:11 2018)
+  /CreationDate (Mon Mar 05 00:30:36 2018)
   /DOCINFO pdfmark
 end
 } ifelse
@@ -562,11 +564,13 @@ gnudict begin
 gsave
 doclip
 50 50 translate
-0.050 0.050 scale
+0.100 0.100 scale
+90 rotate
+0 -5040 translate
 0 setgray
 newpath
 (Helvetica) findfont 140 scalefont setfont
-BackgroundColor 0 lt 3 1 roll 0 lt exch 0 lt or or not {BackgroundColor C 1.000 0 0 7200.00 5040.00 BoxColFill} if
+BackgroundColor 0 lt 3 1 roll 0 lt exch 0 lt or or not {gsave BackgroundColor C clippath fill grestore} if
 1.000 UL
 LTb
 LCb setrgbcolor
@@ -981,7 +985,7 @@ LTb
 LCb setrgbcolor
 LCb setrgbcolor
 3746 4829 M
-[ [(Helvetica) 140.0 0.0 true true 0 (Ejemplo 4.2 Manipulaciï¿½n de nodos en grafo no dirigido)]
+[ [(Helvetica) 140.0 0.0 true true 0 (Ejemplo 4.2 Manipulación de nodos en grafo no dirigido)]
 ] -46.7 MCshow
 % Begin plot #1
 1.000 UL
@@ -1009,3 +1013,4 @@ end
 showpage
 %%Trailer
 %%DocumentFonts: Helvetica
+%%Pages: 1

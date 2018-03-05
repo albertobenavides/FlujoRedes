@@ -240,7 +240,7 @@ G.DibujarGrafo("Título", True)
 - [x] ~~Completar documentación de arcos~~
 - [x] ~~Eliminar vecindades~~
 - [x] ~~Modificar pesos de vecindades~~
-- [x] Agregar imágenes en formato `EPS`
+- [x] ~~Agregar imágenes en formato `EPS`~~
 - [ ] Guardar grafos en archivos de texto
 - [ ] Agregar ejemplo de asignación de horarios
 - [ ] Nodos sólo con contorno y grosor de contorno
