@@ -29,4 +29,4 @@ for i in range(N):
     )
     G.AgregarNodo(n)
 
-G.DibujarGrafo("Ejemplo 2. Nodos")
+G.DibujarGrafo("Ejemplo 2. Nodos", True)

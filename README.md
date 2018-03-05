@@ -161,7 +161,7 @@ Observaciones:
 
 ### Eliminar un nodo
 
-Es posible eliminar un nodo *N* con sus vecindades y pesos asociados de un grafo *G* con:
+Es posible eliminar un nodo *n* con sus vecindades y pesos asociados de un grafo *G* con:
 
 ```python
 G.EliminarNodo(n)
@@ -217,14 +217,20 @@ Observaciones:
 * Si *G* es un grafo no dirigido, se eliminan **todas** las vecindades del nodo *n*.
 * Eliminar vecindades también elimina los pesos asignados a dichas vecindades.
 
-### Dibujar grafo
+### Dibujar un grafo
 
-Las siguientes líneas dibujar un grafo *G* sin título y con título "Título":
+Las siguientes líneas dibujan, en imágenes `PNG`, un grafo *G* sin título y con título "Título":
 
 ```python
 G.DibujarGrafo() # Imagen de un grafo sin título
 
 G.DibujarGrafo("Título") # Imagen de un grafo con encabezado "Título"
+```
+
+Adicionalmente, se puede generar una imagen `EPS` del grafo agregándo un parámetro adicional a la función:
+
+```python
+G.DibujarGrafo("Título", True)
 ```
 
 ## Tareas pendientes
@@ -234,14 +240,15 @@ G.DibujarGrafo("Título") # Imagen de un grafo con encabezado "Título"
 - [x] ~~Completar documentación de arcos~~
 - [x] ~~Eliminar vecindades~~
 - [x] ~~Modificar pesos de vecindades~~
+- [x] Agregar imágenes en formato `EPS`
 - [ ] Guardar grafos en archivos de texto
 - [ ] Agregar ejemplo de asignación de horarios
 - [ ] Nodos sólo con contorno y grosor de contorno
 - [ ] Agregar rangos de los ejes del plano a dibujar
 - [ ] Ejemplos de aplicación con algoritmo genético para tipos de nodo
 - [ ] Ejemplo de aplicación de flujo en redes ()
-- [ ] Agregar imágenes en formato `EPS`
 - [ ] Agregar conexiones de un mismo nodo consigo mismo
+- [ ] Hacer grafos en forma de árbol (los hijos de un nodo son sus ramas, etc.)
 
   [862993bb]: https://stackoverflow.com/questions/3701646/how-to-add-to-the-pythonpath-in-windows-7 "Proceso de agregado de carpetas al `PATH` de Windows."
   [08100e87]: https://www.python.org/downloads/ "Descargas de `python3`."

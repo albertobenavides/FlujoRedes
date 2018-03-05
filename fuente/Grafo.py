@@ -67,11 +67,15 @@ class Grafo:
                 d += self.Distancia(n.posicion, v.posicion)
         return d
 
-    def DibujarGrafo(self, titulo = ""):
+    def DibujarGrafo(self, titulo = "", eps = False):
         self.nombre = str(self.nombre)
         with open(self.nombre + ".gnu", "w") as f:
-            print("set terminal png truecolor", file = f)
-            print("set output '" + self.nombre + ".png'", file = f)
+            if eps:
+                print("set terminal postscript color enhanced", file = f) # http://www.gnuplotting.org/tag/epslatex/
+                print("set output '" + self.nombre + ".eps'", file = f)
+            else:
+                print("set terminal png truecolor", file = f)
+                print("set output '" + self.nombre + ".png'", file = f)
             print("set key off", file = f)
             print("set size square", file = f)
             print("unset colorbox", file = f)

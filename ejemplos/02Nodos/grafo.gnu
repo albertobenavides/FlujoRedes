@@ -1,50 +1,49 @@
-set terminal png truecolor
-set output 'grafo.png'
+set terminal postscript color enhanced
+set output 'grafo.eps'
 set key off
 set size square
 unset colorbox
 set title'Ejemplo 2. Nodos'
 set object circle at 0,0 fillcolor rgb '#00ff0000' fillstyle solid noborder size 0.2
-set label '0' at 0.04434487183641955,0.6831201254439461 left offset char -0.4,0
-set object circle at 0.04434487183641955,0.6831201254439461 fillcolor rgb '#8037fad1' fillstyle solid noborder size 0.08222761018434688
-set label '1' at 0.47285126653020826,0.4341051933027821 left offset char -0.4,0
-set object circle at 0.47285126653020826,0.4341051933027821 fillcolor rgb '#804c601a' fillstyle solid noborder size 0.05631162315331625
-set label '2' at 0.1482194121473348,0.89690817356655 left offset char -0.4,0
-set object circle at 0.1482194121473348,0.89690817356655 fillcolor rgb '#8081ca77' fillstyle solid noborder size 0.09326506070128524
-set label '3' at 0.22494615035012533,0.05751855025998098 left offset char -0.4,0
-set object circle at 0.22494615035012533,0.05751855025998098 fillcolor rgb '#809bb5c0' fillstyle solid noborder size 0.07504215370859879
-set label '4' at 0.8146326115246402,0.3100853598327581 left offset char -0.4,0
-set object circle at 0.8146326115246402,0.3100853598327581 fillcolor rgb '#8090d758' fillstyle solid noborder size 0.08366263775005478
-set label '5' at 0.5530646967742143,0.40176280521366725 left offset char -0.4,0
-set object circle at 0.5530646967742143,0.40176280521366725 fillcolor rgb '#80bccb6e' fillstyle solid noborder size 0.07109185193874618
-set label '6' at 0.09599168495000232,0.448862994234428 left offset char -0.4,0
-set object circle at 0.09599168495000232,0.448862994234428 fillcolor rgb '#80cfe46a' fillstyle solid noborder size 0.060385620841781396
-set label '7' at 0.5934840492425532,0.335976808816009 left offset char -0.4,0
-set object circle at 0.5934840492425532,0.335976808816009 fillcolor rgb '#80ec8a0b' fillstyle solid noborder size 0.05281968042982893
-set label '8' at 0.14933650873956061,0.4019158812685747 left offset char -0.4,0
-set object circle at 0.14933650873956061,0.4019158812685747 fillcolor rgb '#80ffa4d0' fillstyle solid noborder size 0.05885409894550417
-set label '9' at 0.7568442580582917,0.16275526085284076 left offset char -0.4,0
-set object circle at 0.7568442580582917,0.16275526085284076 fillcolor rgb '#80a4d208' fillstyle solid noborder size 0.09971425733517436
-set label '10' at 0.6692405164400214,0.36869848112600745 left offset char -0.8,0
-set object circle at 0.6692405164400214,0.36869848112600745 fillcolor rgb '#80e6b646' fillstyle solid noborder size 0.056333277111250045
-set label '11' at 0.3269788980129005,0.3056869532661567 left offset char -0.8,0
-set object circle at 0.3269788980129005,0.3056869532661567 fillcolor rgb '#803336b0' fillstyle solid noborder size 0.06645340172394504
-set label '12' at 0.6501503912686073,0.2925074112287218 left offset char -0.8,0
-set object circle at 0.6501503912686073,0.2925074112287218 fillcolor rgb '#80655ec5' fillstyle solid noborder size 0.05910330699484292
-set label '13' at 0.7719827651192831,0.1982542112599205 left offset char -0.8,0
-set object circle at 0.7719827651192831,0.1982542112599205 fillcolor rgb '#805a8d28' fillstyle solid noborder size 0.08198930700097631
-set label '14' at 0.15446353780565658,0.31199688535298553 left offset char -0.8,0
-set object circle at 0.15446353780565658,0.31199688535298553 fillcolor rgb '#80f6fb84' fillstyle solid noborder size 0.09648200761546358
-set label '15' at 0.667657621049259,0.9574915089315037 left offset char -0.8,0
-set object circle at 0.667657621049259,0.9574915089315037 fillcolor rgb '#805b5b7e' fillstyle solid noborder size 0.08644587019287339
-set label '16' at 0.9749932165418942,0.7958207809013494 left offset char -0.8,0
-set object circle at 0.9749932165418942,0.7958207809013494 fillcolor rgb '#8080547d' fillstyle solid noborder size 0.0680876575229639
-set label '17' at 0.7622762748446629,0.780328468224246 left offset char -0.8,0
-set object circle at 0.7622762748446629,0.780328468224246 fillcolor rgb '#802c3bf8' fillstyle solid noborder size 0.09136496723039036
-set label '18' at 0.15776514323687396,0.7237678886004458 left offset char -0.8,0
-set object circle at 0.15776514323687396,0.7237678886004458 fillcolor rgb '#808f1b83' fillstyle solid noborder size 0.06551004469631558
-set label '19' at 0.5827584429414039,0.3965529808198551 left offset char -0.8,0
-set object circle at 0.5827584429414039,0.3965529808198551 fillcolor rgb '#80e552ba' fillstyle solid noborder size 0.07509639808079059
+set label '0' at 0.8249214221268858,0.6035650241873342 left offset char -0.4,0
+set object circle at 0.8249214221268858,0.6035650241873342 fillcolor rgb '#80ce5af5' fillstyle solid noborder size 0.09220685268146803
+set label '1' at 0.4453916417339837,0.4101288742109165 left offset char -0.4,0
+set object circle at 0.4453916417339837,0.4101288742109165 fillcolor rgb '#80f8c572' fillstyle solid noborder size 0.054514931519220135
+set label '2' at 0.5938202548232503,0.40149251136290276 left offset char -0.4,0
+set object circle at 0.5938202548232503,0.40149251136290276 fillcolor rgb '#80c4ecbb' fillstyle solid noborder size 0.054707579316221895
+set label '3' at 0.7459532628277101,0.9649623198892314 left offset char -0.4,0
+set object circle at 0.7459532628277101,0.9649623198892314 fillcolor rgb '#80d3c0b3' fillstyle solid noborder size 0.08924628650639664
+set label '4' at 0.12681903175184472,0.33486770997604665 left offset char -0.4,0
+set object circle at 0.12681903175184472,0.33486770997604665 fillcolor rgb '#8054373f' fillstyle solid noborder size 0.07959607727705785
+set label '5' at 0.5130696254826717,0.6776136343846196 left offset char -0.4,0
+set object circle at 0.5130696254826717,0.6776136343846196 fillcolor rgb '#80138f0c' fillstyle solid noborder size 0.050708757850073054
+set label '6' at 0.9223537298662978,0.938769915272322 left offset char -0.4,0
+set object circle at 0.9223537298662978,0.938769915272322 fillcolor rgb '#801eece8' fillstyle solid noborder size 0.07885180284416493
+set label '7' at 0.7910173043643862,0.823925280304253 left offset char -0.4,0
+set object circle at 0.7910173043643862,0.823925280304253 fillcolor rgb '#80dc09b2' fillstyle solid noborder size 0.06842526853979816
+set label '8' at 0.5868022488684359,0.823664251443968 left offset char -0.4,0
+set object circle at 0.5868022488684359,0.823664251443968 fillcolor rgb '#80852101' fillstyle solid noborder size 0.07469936973758268
+set label '9' at 0.8713807758966297,0.9140808755994901 left offset char -0.4,0
+set object circle at 0.8713807758966297,0.9140808755994901 fillcolor rgb '#80831de9' fillstyle solid noborder size 0.05680440794597162
+set label '10' at 0.9836070481281396,0.5660940681620433 left offset char -0.8,0
+set object circle at 0.9836070481281396,0.5660940681620433 fillcolor rgb '#80c01fda' fillstyle solid noborder size 0.06564529710245981
+set label '11' at 0.015550492092628154,0.2745319434303779 left offset char -0.8,0
+set object circle at 0.015550492092628154,0.2745319434303779 fillcolor rgb '#80d618e6' fillstyle solid noborder size 0.05947670345194065
+set label '12' at 0.4354724278686052,0.6374937334889005 left offset char -0.8,0
+set object circle at 0.4354724278686052,0.6374937334889005 fillcolor rgb '#8018ec3d' fillstyle solid noborder size 0.06326969436520447
+set label '13' at 0.7753520345565339,0.3115001954608211 left offset char -0.8,0
+set object circle at 0.7753520345565339,0.3115001954608211 fillcolor rgb '#80c8cc70' fillstyle solid noborder size 0.06541721124736619
+set label '14' at 0.3690819415916128,0.7882151777458468 left offset char -0.8,0
+set object circle at 0.3690819415916128,0.7882151777458468 fillcolor rgb '#806d1c44' fillstyle solid noborder size 0.07071855457606482
+set label '15' at 0.3255974056496841,0.04799249044247156 left offset char -0.8,0
+set object circle at 0.3255974056496841,0.04799249044247156 fillcolor rgb '#80e19060' fillstyle solid noborder size 0.09326118994140678
+set label '16' at 0.08521539524280275,0.8334531681098434 left offset char -0.8,0
+set object circle at 0.08521539524280275,0.8334531681098434 fillcolor rgb '#8055d370' fillstyle solid noborder size 0.09330777978389762
+set label '17' at 0.17019116778457377,0.7306271926732997 left offset char -0.8,0
+set object circle at 0.17019116778457377,0.7306271926732997 fillcolor rgb '#801e7c77' fillstyle solid noborder size 0.06863836417631461
+set label '18' at 0.456799357713083,0.7240525275859965 left offset char -0.8,0
+set object circle at 0.456799357713083,0.7240525275859965 fillcolor rgb '#80ce9bac' fillstyle solid noborder size 0.07043798997855646
+set label '19' at 0.7145557942140025,0.4016552445609791 left offset char -0.8,0
+set object circle at 0.7145557942140025,0.4016552445609791 fillcolor rgb '#8057f49f' fillstyle solid noborder size 0.08874335914741702
 set style fill transparent solid 0.5 noborder
 plot [-0.1:1.1][-0.1:1.1] NaN t''
-quit
