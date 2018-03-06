@@ -9,6 +9,12 @@ class Grafo:
         self.pesos = dict() # un mapeo de pesos de aristas
         self.vecinos = dict() # un mapeo
 
+    #def __repr__(self): # https://stackoverflow.com/questions/1984162/purpose-of-pythons-repr
+        #return self.__str__()
+
+    #def __str__(self): # https://stackoverflow.com/questions/12448175/confused-about-str-on-list-in-python
+        #return "hola"
+
     def AgregarNodo(self, n):
         self.nodos.append(n)
         if not n in self.vecinos: # vecindad de n
@@ -66,6 +72,69 @@ class Grafo:
             for v in self.vecinos[n]:
                 d += self.Distancia(n.posicion, v.posicion)
         return d
+
+    def Floyd_Warshall(self):
+        d = {} # diccionario de distancias
+        for n in self.nodos:
+            d[(n, n)] = 0
+            for v in self.vecinos[n]: # para vecinos, la distancia es el peso
+               d[(n, v)] = self.pesos[(n, v)]
+        for intermedio in self.nodos:
+            for desde in self.nodos:
+                for hasta in self.nodos:
+                    di = None
+                    if (desde, intermedio) in d:
+                        di = d[(desde, intermedio)]
+                    ih = None
+                    if (intermedio, hasta) in d:
+                        ih = d[(intermedio, hasta)]
+                    if di is not None and ih is not None:
+                        c = di + ih # largo del camino via "i"
+                        if (desde, hasta) not in d or c < d[(desde, hasta)]:
+                            d[(desde, hasta)] = c # mejora al camino actual
+        return d
+
+    def Camino(self, s, t): # construcción de un camino aumentante
+        # s : origen
+        # t : destino
+        cola = [s]
+        usados = set()
+        camino = dict()
+        while len(cola) > 0:
+            u = cola.pop(0)
+            usados.add(u)
+            for (w, v) in self.pesos:
+                if w == u and v not in cola and v not in usados:
+                    actual = self.vecinos.get((u, v), 0)
+                    dif = self.pesos[(u, v)] - actual
+                    if dif > 0:
+                        cola.append(v)
+                        camino[v] = (u, dif)
+        if t in usados:
+            return camino
+        else: # no se alcanzó
+            return None
+
+    def Ford_Fulkerson(self, s, t): # algoritmo de Ford y Fulkerson
+        if s == t:
+            return 0
+        maximo = 0
+        f = dict()
+        while True:
+            aum = self.Camino(s, t)
+            if aum is None:
+                break # ya no hay
+            incr = min(aum.values(), key = (lambda k: k[1]))[1]
+            u = t
+            while u in aum:
+                v = aum[u][0]
+                actual = self.vecinos.get((v, u), 0) # cero si no hay
+                inverso = self.vecinos.get((u, v), 0)
+                self.vecinos[(v, u)] = actual + incr
+                self.vecinos[(u, v)] = inverso - incr
+                u = v
+            maximo += incr
+        return maximo
 
     def DibujarGrafo(self, titulo = "", eps = False):
         self.nombre = str(self.nombre)
