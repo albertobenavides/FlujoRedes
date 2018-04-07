@@ -73,7 +73,7 @@ class Grafo:
                 d += self.Distancia(n.posicion, v.posicion)
         return d
 
-    def Floyd_Warshall(self):
+    def Floyd_Warshall(self): # Camino más corto entre todos los pares de vértices
         d = {} # diccionario de distancias
         for n in self.nodos:
             d[(n, n)] = 0
@@ -94,7 +94,7 @@ class Grafo:
                             d[(desde, hasta)] = c # mejora al camino actual
         return d
 
-    def Camino(self, s, t, f): # construcción de un camino aumentante
+    def CaminoAumentante(self, s, t, f): # construcción de un camino aumentante
         # s : origen
         # t : destino
         cola = [s] # Se almacena el nodo inicial
@@ -116,13 +116,13 @@ class Grafo:
         else: # Si no se alcanzó dicho nodo
             return None # No se regresa nada
 
-    def Ford_Fulkerson(self, s, t):
+    def Ford_Fulkerson(self, s, t): # Máximo flujo entre un vértice inicial (s) y uno final (t)
         if s == t: # Si el nodo inicial es el nodo destino
             return 0 # el peso máximo es 0
         maximo = 0
         flujo = dict()
         while True:
-            aum = self.Camino(s, t, flujo) # Regresa todos los caminos que van de s a t
+            aum = self.CaminoAumentante(s, t, flujo) # Regresa todos los caminos que van de s a t
             if aum is None: # Si no regresa nada
                 break # Ya no hay caminos y se acaba el ciclo
             incr = min(aum.values(), key = (lambda k: k[1]))[1] # De todos los pesos en todos los caminos de s a t, se elige el menor

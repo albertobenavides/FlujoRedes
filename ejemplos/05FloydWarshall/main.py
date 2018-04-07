@@ -38,11 +38,8 @@ G.ConectarNodos(b, c, 2)
 G.ConectarNodos(c, d, 4)
 G.ConectarNodos(b, d, 3)
 
-#print(G.vecinos[a])
-#print(G.nodos)
-#print(G.pesos)
-
-G.DibujarGrafo("Ejemplo 5. Arcos con etiqueta", mostrarPesos = True)
+#G.DibujarGrafo("Ejemplo 5. Arcos con etiqueta", mostrarPesos = True, eps = True)
+G.DibujarGrafo("Ejemplo de grafo con 4 nodos", mostrarPesos = True, eps = True)
 
 for (k, val) in G.Floyd_Warshall().items(): # toma el camino más corto entre todos los nodos
     n = k[0]
@@ -50,5 +47,4 @@ for (k, val) in G.Floyd_Warshall().items(): # toma el camino más corto entre to
     print(n.id, v.id, val)
 
 print("a -> b: " + str(G.Ford_Fulkerson(a, b)))
-
 print("a -> d: " + str(G.Ford_Fulkerson(a, d)))
