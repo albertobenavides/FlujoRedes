@@ -69,7 +69,7 @@
   %https://www.youtube.com/watch?v=Tl90tNtKvxs
   El máximo flujo entre dos nodos se calcula con el algoritmo de Ford-Fulkerson. Este algoritmo consiste en recorrer todos los caminos que van desde un nodo inicial $s$ hasta uno final $f$, tomando como limitante el peso mínimo entre los pesos de los arcos que constituyen cada camino. Ese peso limitante indica el máximo flujo que podría soportar dicho camino. Cada iteración, se actualiza el grafo en el sentido en que se resta al peso de cada arco del camino elegido, el peso del camino mínimo. Cada iteración posterior, eligirá caminos en los que todos sus arcos posean capacidad disponible y se repite el proceso. Cuando no haya más caminos con arcos que tengan capacidades disponibles, se suman los pesos actualizados del grafo resultante, camino por camino, y se obtiene de su suma el máximo flujo del nodo $s$ al $t$. Del ejemplo graficado en la figura figura \ref{fig:ejemplo} (p. \pageref{fig:ejemplo}) se calculó el flujo máximo entre los nodos $a$ y $b$, obteniendo por resultado $10$; y entre los nodos $a$ y $d$, $7$.
 
-  Ahora, este mismo algoritmo se correrá con el mismo grafo, pero dirigido, tal como se muestra en la figura \ref{fig:ejemploDirigido} (p. \pageref{fig:ejemploDirigido}). A este nuevo grafo se le llamará $H$.
+  Ahora, para mostrar el funcionamiento en un grafo dirigido, estos mismos algoritmos se correrá con el mismo grafo, pero dirigido, tal como se muestra en la figura \ref{fig:ejemploDirigido} (p. \pageref{fig:ejemploDirigido}). A este nuevo grafo se le llamará $H$.
 
   \begin{figure}[h]
     \includegraphics[width=0.7\textwidth, angle=-90]{ejemploDirigido} % https://tex.stackexchange.com/questions/120117/how-to-rotate-eps-file
@@ -78,7 +78,29 @@
     \label{fig:ejemploDirigido}
   \end{figure}
 
-  Tras correr el algoritmo de Floyd-Warshall en este
+  Tras correr el algoritmo de Floyd-Warshall sobre el grafo $H$ se obtienen los caminos más cortos mostrados en el cuadro \ref{cuadro:floyd-ejemploDirigido} (\pageref{cuadro:floyd-ejemploDirigido}).
+
+  \begin{table}[]
+  \centering
+  \caption{Camino más corto entre todos los pares de nodos, denotados por cada iteración como nodo inicial $s$ y nodo final $t$, para el grafo $H$ construido a manera de ejemplo para nodos dirigidos.}
+  \label{cuadro:floyd-ejemploDirigido}
+  \begin{tabular}{@{}ccc@{}}
+  \toprule
+  \textbf{Nodo inicial $s$} & \textbf{Nodo final $t$} & \textbf{Camino más corto} \\ \midrule
+  a & a & 0 \\ \midrule
+  a & c & 7 \\ \midrule
+  a & b & 5 \\ \midrule
+  b & b & 0 \\ \midrule
+  b & c & 2 \\ \midrule
+  b & d & 3 \\ \midrule
+  c & c & 0 \\ \midrule
+  c & d & 4 \\ \midrule
+  d & d & 0 \\ \midrule
+  a & d & 8 \\ \bottomrule
+  \end{tabular}
+  \end{table}
+
+  Por su parte, el algoritmo de Ford-Fulkerson en el grafo $H$, da por resultado $5$ del nodo $a$ al $b$; y $7$ del nodo $a$ al $d$.
 
   %\bibliography{biblio}{}
   %\bibliographystyle{plain}
