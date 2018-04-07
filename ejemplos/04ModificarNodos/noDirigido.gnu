@@ -42,8 +42,8 @@ set label '18' at 0.5,1.0 left offset char -0.8,0
 set object circle at 0.5,1.0 fillcolor rgb '#0080808080' fillstyle solid noborder size 0.08
 set label '19' at 0.75,1.0 left offset char -0.8,0
 set object circle at 0.75,1.0 fillcolor rgb '#0080808080' fillstyle solid noborder size 0.08
-set arrow 1 from 0.0,0.08 to 0.0,0.16999999999999998 linewidth 1 nohead
-set arrow 2 from 0.08,0.0 to 0.16999999999999998,0.0 linewidth 1 nohead
+set arrow 1 from 0.08,0.0 to 0.16999999999999998,0.0 linewidth 1 nohead
+set arrow 2 from 0.0,0.08 to 0.0,0.16999999999999998 linewidth 1 nohead
 set arrow 3 from 0.33,0.0 to 0.42,0.0 linewidth 1 nohead
 set arrow 4 from 0.25,0.08 to 0.25,0.16999999999999998 linewidth 1 nohead
 set arrow 5 from 0.5,0.08 to 0.5,0.16999999999999998 linewidth 1 nohead
@@ -51,8 +51,8 @@ set arrow 6 from 0.58,0.0 to 0.92,0.0 linewidth 1 nohead
 set arrow 7 from 0.9434314575050762,0.056568542494923796 to 0.8065685424949238,0.1934314575050762 linewidth 1 nohead
 set arrow 8 from 0.0,0.33 to 0.0,0.42 linewidth 3 nohead
 set arrow 9 from 0.08,0.25 to 0.16999999999999998,0.25 linewidth 3 nohead
-set arrow 10 from 0.58,0.25 to 0.67,0.25 linewidth 1 nohead
-set arrow 11 from 0.5,0.33 to 0.5,0.42 linewidth 1 nohead
+set arrow 10 from 0.5,0.33 to 0.5,0.42 linewidth 1 nohead
+set arrow 11 from 0.58,0.25 to 0.67,0.25 linewidth 1 nohead
 set arrow 12 from 0.75,0.33 to 0.75,0.42 linewidth 5 nohead
 set arrow 13 from 0.08,0.5 to 0.16999999999999998,0.5 linewidth 1 nohead
 set arrow 14 from 0.0,0.58 to 0.0,0.67 linewidth 1 nohead

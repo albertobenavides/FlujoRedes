@@ -94,49 +94,50 @@ class Grafo:
                             d[(desde, hasta)] = c # mejora al camino actual
         return d
 
-    def Camino(self, s, t): # construcción de un camino aumentante
+    def Camino(self, s, t, f): # construcción de un camino aumentante
         # s : origen
         # t : destino
-        cola = [s]
+        cola = [s] # Se almacena el nodo inicial
         usados = set()
         camino = dict()
-        while len(cola) > 0:
-            u = cola.pop(0)
-            usados.add(u)
-            for (w, v) in self.pesos:
-                if w == u and v not in cola and v not in usados:
-                    actual = self.vecinos.get((u, v), 0)
-                    dif = self.pesos[(u, v)] - actual
-                    if dif > 0:
-                        cola.append(v)
-                        camino[v] = (u, dif)
-        if t in usados:
-            return camino
-        else: # no se alcanzó
-            return None
+        while len(cola) > 0: # Mientras haya nodos por recorrer
+            u = cola.pop(0) # Se obtiene el nodo por recorrer y se almacena como el nodo u (actual)
+            usados.add(u) # Se agrega a usados (evita que se recorra en dos sentidos si fuera dirigido)
+            for (w, v) in self.pesos: # Cada peso de cada arista
+                if w == u and v not in cola and v not in usados: # Del nodo actual, si su vecino no está en la cola ni ha sido recorrido (usado) ; ¿se pueden poner sólo los vecinos de u?;  ¿se puede quitar v not in cola?
+                    pesoActual = f.get((u, v), 0) # Del flujo (grafo reducido) se obtiene el peso que hay entre el nodo actual y su vecino
+                    dif = self.pesos[(u, v)] - pesoActual # Diferencia entre el peso del arco en el Grafo y del peso en el arco en el grafo reducido
+                    if dif > 0: # Si se permite el paso del flujo
+                        cola.append(v) # Se agrega el vecino a la cola (se vuelve el siguiente nodo a recorrer)
+                        camino[v] = (u, dif) # Se agrega como camino que llega a v del nodo u (actual, la diferencia de pesos del Grafo al Grafo reducido)
+        # Si no se permite el paso del flujo a otro nodo
+        if t in usados: # Y si se ha llegado al final del camino de s (nodo inicial) a t (nodo final)
+            return camino # Se regresa ese camino
+        else: # Si no se alcanzó dicho nodo
+            return None # No se regresa nada
 
-    def Ford_Fulkerson(self, s, t): # algoritmo de Ford y Fulkerson
-        if s == t:
-            return 0
+    def Ford_Fulkerson(self, s, t):
+        if s == t: # Si el nodo inicial es el nodo destino
+            return 0 # el peso máximo es 0
         maximo = 0
-        f = dict()
+        flujo = dict()
         while True:
-            aum = self.Camino(s, t)
-            if aum is None:
-                break # ya no hay
-            incr = min(aum.values(), key = (lambda k: k[1]))[1]
+            aum = self.Camino(s, t, flujo) # Regresa todos los caminos que van de s a t
+            if aum is None: # Si no regresa nada
+                break # Ya no hay caminos y se acaba el ciclo
+            incr = min(aum.values(), key = (lambda k: k[1]))[1] # De todos los pesos en todos los caminos de s a t, se elige el menor
             u = t
             while u in aum:
                 v = aum[u][0]
-                actual = self.vecinos.get((v, u), 0) # cero si no hay
-                inverso = self.vecinos.get((u, v), 0)
-                self.vecinos[(v, u)] = actual + incr
-                self.vecinos[(u, v)] = inverso - incr
+                actual = flujo.get((v, u), 0) # cero si no hay
+                inverso = flujo.get((u, v), 0)
+                flujo[(v, u)] = actual + incr
+                flujo[(u, v)] = inverso - incr
                 u = v
             maximo += incr
         return maximo
 
-    def DibujarGrafo(self, titulo = "", eps = False):
+    def DibujarGrafo(self, titulo = "", eps = False, mostrarPesos = False):
         self.nombre = str(self.nombre)
         with open(self.nombre + ".gnu", "w") as f:
             if eps:
@@ -184,10 +185,34 @@ class Grafo:
 
                     print("set arrow " + str(i) +
                         " from " + str(x1) + "," + str(y1) + " to " + str(x2) + "," + str(y2) + " linewidth " + str(self.pesos[(n, v)]), end = "", file = f) # https://stackoverflow.com/questions/5598181/multiple-prints-on-the-same-line
+
                     if self.dirigido:
                         print("", file = f)
                     else:
                         print(" nohead", file = f)
+                        if mostrarPesos:
+                            pmX = (x1 + x2) / 2
+                            pmY = (y1 + y2) / 2
+                            deltaX = x1 - x2
+                            m = 0
+                            if deltaX == 0:
+                                m = 1000
+                            else:
+                                m = (y1 - y2) / deltaX
+                            xLabel = 0
+                            yLabel = 0
+                            if m == 0:
+                                yLabel = 0.03;
+                            elif m == 1000:
+                                xLabel = -0.03
+                            elif m > 0:
+                                xLabel = -0.07
+                                yLabel = -0.03
+                            elif m < 0:
+                                xLabel = 0.07
+                                yLabel = -0.03
+                            print("set label '" + str(self.pesos[(n, v)]) + "' at " + str(pmX + xLabel) + "," + str(pmY + yLabel) + " left offset char -" + str(0.4 * len(str(self.pesos[(n, v)]))) + ",0", file = f)
+
                     i = i + 1
 
             print("set style fill transparent solid 0.5 noborder", file = f)

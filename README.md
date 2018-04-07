@@ -230,17 +230,21 @@ G.DibujarGrafo("Título") # Imagen de un grafo con encabezado "Título"
 Adicionalmente, se puede generar una imagen `EPS` del grafo agregándo un parámetro adicional a la función:
 
 ```python
-G.DibujarGrafo("Título", True)
+G.DibujarGrafo("Título", eps = True)
 ```
 
+Como parámetro opcional para grafos no dirigidos, podría agregarse un parámetro para imprimir los pesos de los arcos entre nodos:
+
+```python
+G.DibujarGrafo("Título", mostrarPesos = True)
+```
+
+Una muestra de esta funcionalidad se aprecia en la siguiente figura:
+
+![](ejemplos/05FloydWarshall/grafo.png?raw=true)
+
 ## Tareas pendientes
-- [x] ~~Arcos simples~~
-- [x] ~~Configuración de nodos~~
-- [x] ~~Configuración de grafos~~
-- [x] ~~Completar documentación de arcos~~
-- [x] ~~Eliminar vecindades~~
-- [x] ~~Modificar pesos de vecindades~~
-- [x] ~~Agregar imágenes en formato `EPS`~~
+- [ ] Arcos de diferente grosor y color
 - [ ] Guardar grafos en archivos de texto
 - [ ] Agregar ejemplo de asignación de horarios
 - [ ] Nodos sólo con contorno y grosor de contorno

@@ -50,6 +50,6 @@ G.nombre = "noDirigido"
 n = G.NodoConId(11)
 G.ModificarPesos(n, 5)
 
-G.DibujarGrafo("Ejemplo 4.2 Manipulación de nodos en grafo no dirigido", True)
+G.DibujarGrafo("Ejemplo 4.2 Manipulación de nodos en grafo no dirigido", eps = True)
 
 G.DibujarGrafo("Ejemplo 4.2 Manipulación de nodos en grafo no dirigido")
