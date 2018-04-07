@@ -190,28 +190,28 @@ class Grafo:
                         print("", file = f)
                     else:
                         print(" nohead", file = f)
-                        if mostrarPesos:
-                            pmX = (x1 + x2) / 2
-                            pmY = (y1 + y2) / 2
-                            deltaX = x1 - x2
-                            m = 0
-                            if deltaX == 0:
-                                m = 1000
-                            else:
-                                m = (y1 - y2) / deltaX
-                            xLabel = 0
-                            yLabel = 0
-                            if m == 0:
-                                yLabel = 0.03;
-                            elif m == 1000:
-                                xLabel = -0.03
-                            elif m > 0:
-                                xLabel = -0.07
-                                yLabel = -0.03
-                            elif m < 0:
-                                xLabel = 0.07
-                                yLabel = -0.03
-                            print("set label '" + str(self.pesos[(n, v)]) + "' at " + str(pmX + xLabel) + "," + str(pmY + yLabel) + " left offset char -" + str(0.4 * len(str(self.pesos[(n, v)]))) + ",0", file = f)
+                    if mostrarPesos:
+                        pmX = (x1 + x2) / 2
+                        pmY = (y1 + y2) / 2
+                        deltaX = x1 - x2
+                        m = 0
+                        if deltaX == 0:
+                            m = 1000
+                        else:
+                            m = (y1 - y2) / deltaX
+                        xLabel = 0
+                        yLabel = 0
+                        if m == 0:
+                            yLabel = 0.03;
+                        elif m == 1000:
+                            xLabel = -0.03
+                        elif m > 0:
+                            xLabel = -0.07
+                            yLabel = -0.03
+                        elif m < 0:
+                            xLabel = 0.07
+                            yLabel = -0.03
+                        print("set label '" + str(self.pesos[(n, v)]) + "' at " + str(pmX + xLabel) + "," + str(pmY + yLabel) + " left offset char -" + str(0.4 * len(str(self.pesos[(n, v)]))) + ",0", file = f)
 
                     i = i + 1
 

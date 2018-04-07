@@ -1,5 +1,4 @@
 # Documentación de modificaciones a los algoritmos de la profe
-# Ejemplos para revisar si funciona el algoritmo correcto
 # Revisar si funciona con grafos dirigidos
 # Crear grafos de diferentes tamaños y correr los algoritmos para graficar los tiempos que les toma a los algoritmos correrse; graficar con diagramas caja bigote y violín; y error bars (x, y, largo) y candlesticks (parte baja, alta, cuartil, cuartil, meidana)
 # Revisar con pruebas estadísticas si los datos son normalmente distribuidos
@@ -16,6 +15,11 @@ from Grafo import Grafo
 from Nodo import Nodo
 
 G = Grafo()
+# Comentar si se desea obtener un grafo no dirigido
+G.dirigido = True
+G.nombre = "ejemploDirigido"
+# Hasta aquí
+
 a = Nodo()
 a.id = 'a'
 a.posicion = (0,0)
@@ -39,7 +43,8 @@ G.ConectarNodos(c, d, 4)
 G.ConectarNodos(b, d, 3)
 
 #G.DibujarGrafo("Ejemplo 5. Arcos con etiqueta", mostrarPesos = True, eps = True)
-G.DibujarGrafo("Ejemplo de grafo con 4 nodos", mostrarPesos = True, eps = True)
+# G.DibujarGrafo("Ejemplo de grafo con 4 nodos", mostrarPesos = True, eps = True)
+G.DibujarGrafo("Ejemplo de grafo dirigido con 4 nodos", mostrarPesos = True, eps = True)
 
 for (k, val) in G.Floyd_Warshall().items(): # toma el camino más corto entre todos los nodos
     n = k[0]

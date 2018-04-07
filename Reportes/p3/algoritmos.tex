@@ -28,7 +28,7 @@
   Este par de algoritmos se implementaron en un programa capaz de crear nodos, conectarlos y asignarles pesos y direcciones a las aristas así generadas. Este programa se halla alojado en \url{https://github.com/jbenavidesv87/FlujoRedes}.Se mostrará a continuación la explicación de dichos algoritmos además de ejecutarlos con un ejemplo para mayor claridad.
 
   \section{Ejecución}
-  Tanto el algoritmo de Floyd-Warshall como el de Ford-Fulkerson toman un grafo previamente definido con al menos dos nodos conectados entre sí por una arista ponderada. Para demostrar el uso y funcionalidad de estos algoritmos, se construyó a manera de ejemplo un grafo $G$ con cuatro nodos $a, b, c, d$, con aristas ponderadas como los mostrados en la figura \ref{fig:ejemplo} (p. \pageref{fig:ejemplo}).
+  Tanto el algoritmo de Floyd-Warshall como el de Ford-Fulkerson toman un grafo previamente definido con al menos dos nodos conectados entre sí por una arista ponderada. Para demostrar el uso y funcionalidad de estos algoritmos, se construyó a manera de ejemplo un grafo $G$ no dirigido con cuatro nodos $a, b, c, d$, con aristas ponderadas como los mostrados en la figura \ref{fig:ejemplo} (p. \pageref{fig:ejemplo}).
 
   \begin{figure}[h]
     \includegraphics[width=0.7\textwidth, angle=-90]{ejemplo} % https://tex.stackexchange.com/questions/120117/how-to-rotate-eps-file
@@ -37,6 +37,7 @@
     \label{fig:ejemplo}
   \end{figure}
 
+  % https://www.youtube.com/watch?v=4OQeCuLYj-4&t=186s
   Tras correr el algoritmo de Floyd-Warshal se obtuvieron, para cada par de nodos, el camino más corto entre todos los nodos del grafo. La distancia de estos caminos se calcula a partir de la suma de los pesos de las aristas que conectan a los nodos entre sí. En cada iteración, se exploran todos los caminos que van desde un nodo inicial hasta uno de destino. Se dice que un camino es mejor que otro cuando se encuentra un camino cuya distancia es menor a una existente (si no hay una distancia previamente almacenada, entonces se toma la primer distancia registrada como la mejor). Al final, el algoritmo regresa una lista de las mejores distancias entre todos los nodos. Para este ejemplo construido, la lista se puede consultar en el cuadro \ref{cuadro:floyd-ejemplo} (p. \pageref{cuadro:floyd-ejemplo}).
 
   \begin{table}[]
@@ -65,7 +66,19 @@
   \end{tabular}
   \end{table}
 
-  
+  %https://www.youtube.com/watch?v=Tl90tNtKvxs
+  El máximo flujo entre dos nodos se calcula con el algoritmo de Ford-Fulkerson. Este algoritmo consiste en recorrer todos los caminos que van desde un nodo inicial $s$ hasta uno final $f$, tomando como limitante el peso mínimo entre los pesos de los arcos que constituyen cada camino. Ese peso limitante indica el máximo flujo que podría soportar dicho camino. Cada iteración, se actualiza el grafo en el sentido en que se resta al peso de cada arco del camino elegido, el peso del camino mínimo. Cada iteración posterior, eligirá caminos en los que todos sus arcos posean capacidad disponible y se repite el proceso. Cuando no haya más caminos con arcos que tengan capacidades disponibles, se suman los pesos actualizados del grafo resultante, camino por camino, y se obtiene de su suma el máximo flujo del nodo $s$ al $t$. Del ejemplo graficado en la figura figura \ref{fig:ejemplo} (p. \pageref{fig:ejemplo}) se calculó el flujo máximo entre los nodos $a$ y $b$, obteniendo por resultado $10$; y entre los nodos $a$ y $d$, $7$.
+
+  Ahora, este mismo algoritmo se correrá con el mismo grafo, pero dirigido, tal como se muestra en la figura \ref{fig:ejemploDirigido} (p. \pageref{fig:ejemploDirigido}). A este nuevo grafo se le llamará $H$.
+
+  \begin{figure}[h]
+    \includegraphics[width=0.7\textwidth, angle=-90]{ejemploDirigido} % https://tex.stackexchange.com/questions/120117/how-to-rotate-eps-file
+    \centering
+    \caption{Grafo $H$ ponderado y dirigido con 4 nodos $a, b, c, d$ que se usará como ejemplo para probar el funcionamiento de los algoritmos de Floyd-Warshall y Ford-Fulkerson.}
+    \label{fig:ejemploDirigido}
+  \end{figure}
+
+  Tras correr el algoritmo de Floyd-Warshall en este
 
   %\bibliography{biblio}{}
   %\bibliographystyle{plain}
