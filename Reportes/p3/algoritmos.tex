@@ -27,7 +27,7 @@
 
   Este par de algoritmos se implementaron en un programa capaz de crear nodos, conectarlos y asignarles pesos y direcciones a las aristas así generadas. Este programa se halla alojado en \url{https://github.com/jbenavidesv87/FlujoRedes}.Se mostrará a continuación la explicación de dichos algoritmos además de ejecutarlos con un ejemplo para mayor claridad.
 
-  \section{Ejecución}
+  \section{Teoría y ejemplos}
   Tanto el algoritmo de Floyd-Warshall como el de Ford-Fulkerson toman un grafo previamente definido con al menos dos nodos conectados entre sí por una arista ponderada. Para demostrar el uso y funcionalidad de estos algoritmos, se construyó a manera de ejemplo un grafo $G$ no dirigido con cuatro nodos $a, b, c, d$, con aristas ponderadas como los mostrados en la figura \ref{fig:ejemplo} (p. \pageref{fig:ejemplo}).
 
   \begin{figure}[h]
@@ -101,6 +101,14 @@
   \end{table}
 
   Por su parte, el algoritmo de Ford-Fulkerson en el grafo $H$, da por resultado $5$ del nodo $a$ al $b$; y $7$ del nodo $a$ al $d$.
+
+  Este par de ejemplos están contenidos en un mismo código que se puede encontrar comentado en \url{https://github.com/jbenavidesv87/FlujoRedes/blob/master/ejemplos/05FloydWarshall/main.py}.
+
+  Ahora, se pasará a revisar el tiempo de ejecución que toma correr cada algoritmo con diferentes tamaños de grafos.
+
+  \section{Tiempos de ejecución}
+
+  A continuación se crearon 
 
   %\bibliography{biblio}{}
   %\bibliographystyle{plain}

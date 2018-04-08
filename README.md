@@ -244,7 +244,7 @@ Una muestra de esta funcionalidad se aprecia en la siguiente figura:
 ![](ejemplos/05FloydWarshall/grafo.png?raw=true)
 
 ## Tareas pendientes
-- [ ] Arcos de diferente grosor y color
+- [ ] Arcos de diferente grosor y color (con base en nodo de salida)
 - [ ] Guardar grafos en archivos de texto
 - [ ] Agregar ejemplo de asignación de horarios
 - [ ] Nodos sólo con contorno y grosor de contorno
