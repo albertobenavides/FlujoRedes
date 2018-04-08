@@ -104,11 +104,45 @@
 
   Este par de ejemplos están contenidos en un mismo código que se puede encontrar comentado en \url{https://github.com/jbenavidesv87/FlujoRedes/blob/master/ejemplos/05FloydWarshall/main.py}.
 
-  Ahora, se pasará a revisar el tiempo de ejecución que toma correr cada algoritmo con diferentes tamaños de grafos.
+  En la siguiente sección, se estudiará el tiempo de ejecución que toma correr cada algoritmo con diferentes tamaños de grafos.
 
   \section{Tiempos de ejecución}
 
-  A continuación se crearon 
+  Para medir los tiempos de ejecución se realizó un programa que generaba nueve grafos dirigidos con una cantidad de nodos igual a las siguientes potencias de $2$: $2$, $4$, $8$, $16$, $32$, $64$, $128$ y $256$. A cada uno de estos grafos se les efectuó la siguiente serie de acciones:
+
+  \begin{enumerate}
+    \item Se crearon $n$ nodos correspondientes a la potencia del grafo en turno.
+    \item A cada nodo se le asignó una posición al azar en un espacio unitario bidimensional.
+    \item Se calculó la cantidad total de aristas que se podrían establecer entre todas las parejas de nodos, como $t = n (n - 1)$.
+    \item Se crearon un total de $\mathrm{techo}(0.1 t)$ aristas entre parejas de nodos elegidos al azar, cuidando que no se repitieran vecinos.
+    \item Se calculó el tiempo de ejecución del algoritmo de Floyd-Warshal.
+    \item Se eligió al azar una pareja de nodos distintos que sirvieron de base para correr el algoritmo de Ford-Fulkerson y se midió el tiempo que tomó arrojar un resultado.
+  \end{enumerate}
+
+  Esta serie de acciones ejecutadas por cada uno de los nueve grafos se repitió veinte veces. Se obtuvieron como resultado grafos como el que se muestra en la figura \ref{fig:16} (\pageref{fig:16}). Para grafos con tamaños menores a $64$ nodos, el tiempo de ejecución del algoritmo de Floyd-Warshal es menor a un segundo, mientras que para grafos de $256$ nodos, se alcanzan tiempos que rondan los once segundos. Los tiempos de corrida del algoritmo de Ford-Fulkerson tienen tiempos menores a un segundo en grafos de $32$, mientras que para grafos de $128$ nodos o superiores, los tiempos podrían sobrepasar el minuto, habiéndose registrado tiempos de hasta $45$ minutos para grafos con $256$ nodos. Suponemos que estos tiempos tan dilatados en comparación con el resto responden a que se eligen al azar grafos muy distantes y con una gran variedad de caminos entre sí. Investigar este comportamiento resultaría interesante pero se escapa de los alcances de este reporte, por lo que se propone como trabajo futuro.
+
+  \begin{figure}[h]
+    \includegraphics[width=0.7\textwidth]{16} % https://tex.stackexchange.com/questions/120117/how-to-rotate-eps-file
+    \centering
+    \caption{Ejemplo de grafo de 16 nodos con $24$ arcos, equivalentes a un $10 \%$ del total de arcos posibles, es decir $16 \cdot 15 = 240$ arcos dirigidos posibles.}
+    \label{fig:boxplotFord}
+  \end{figure}
+
+  Los tiempos registrados para el algoritmo de Floyd-Warshall han sido representados en escala logarítmica y por cantidad de nodos en diagramas de caja y bigotes en la figura \ref{fig:boxplotFloyd} (\pageref{fig:boxplotFloyd}), mientras que para el algoritmo de Ford-Warshall puede consultarse la figura \ref{fig:boxplotFord} (\pageref{fig:boxplotFord}).
+
+  \begin{figure}[h]
+    \includegraphics[width=0.7\textwidth]{boxplotFloyd} % https://tex.stackexchange.com/questions/120117/how-to-rotate-eps-file
+    \centering
+    \caption{Diagrama de caja y bigotes de los tiempos en segundos en escala logarítmica de ejecución del algoritmo de Floyd-Warshall de los grupos de grafos generados al azar.}
+    \label{fig:boxplotFloyd}
+  \end{figure}
+
+  \begin{figure}[h]
+    \includegraphics[width=0.7\textwidth]{boxplotFord} % https://tex.stackexchange.com/questions/120117/how-to-rotate-eps-file
+    \centering
+    \caption{Diagrama de caja y bigotes de los tiempos en segundos en escala logarítmica de ejecución del algoritmo de Ford-Fulkerson de los grupos de grafos generados al azar.}
+    \label{fig:boxplotFord}
+  \end{figure}
 
   %\bibliography{biblio}{}
   %\bibliographystyle{plain}

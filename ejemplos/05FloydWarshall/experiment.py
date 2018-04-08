@@ -1,5 +1,4 @@
 # Crear grafos de diferentes tamaños y correr los algoritmos para graficar los tiempos que les toma a los algoritmos correrse; graficar con diagramas caja bigote y violín; y error bars (x, y, largo) y candlesticks (parte baja, alta, cuartil, cuartil, mediana)
-# Aristas directamente proporcionales al número de nodos (por densidad, como un 0.1 de aristas por cantidad de nodos)
 
 from random import random, randint, sample
 from math import ceil
@@ -11,7 +10,7 @@ from Grafo import Grafo
 from Nodo import Nodo
 
 for paso in range(0, 10):
-    for p in range (1, 9):
+    for p in range (8, 9):
         pot2 = 2 ** p
         G = Grafo()
         G.dirigido = True
