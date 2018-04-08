@@ -10,7 +10,7 @@ sys.path.append('../../fuente/')
 from Grafo import Grafo
 from Nodo import Nodo
 
-for paso in range(1: 10):
+for paso in range(0, 10):
     for p in range (1, 9):
         pot2 = 2 ** p
         G = Grafo()
