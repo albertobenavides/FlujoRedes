@@ -1,5 +1,3 @@
-# Crear grafos de diferentes tamaños y correr los algoritmos para graficar los tiempos que les toma a los algoritmos correrse; graficar con diagramas caja bigote y violín; y error bars (x, y, largo) y candlesticks (parte baja, alta, cuartil, cuartil, mediana)
-
 from random import random, randint, sample
 from math import ceil
 from time import clock #https://stackoverflow.com/questions/1465146/how-do-you-determine-a-processing-time-in-python
