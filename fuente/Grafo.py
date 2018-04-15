@@ -1,5 +1,19 @@
+#Agregar un promedio de distancias. Avrdist(G); clustcoef(G)
+# Graficar distancia y clustercoeficient por
+# Círculo perfecto. k es 1, entonces te conectas con los vecinos.
+# Función para calcular una cota superior que limita la distancia entre nodos.
+# Probabilidad p para agregar aristas al azar con doble ciclo:
+
+# Para todos los vértices, se buscan sus vecinos. Aristas entre vecinos mismos. Para cada x y para cada vecino de x; cuántos de los vecinos de x son vecinos entre ellos. Se dividiría entre cuántos vecinos eran, para saber cuántas aristas podrían tener.
+
+#implementar generador circular con base en n,k
+#función de la cota superior al promedio con base n, k; f(n, k)
+#dividir la distanciaPromedio entre esa función
+#Graficar la doble y
+#Tiempos que deberían ser O(n^3)
+
 from math import sqrt
-from os import system
+from os import system, remove
 class Grafo:
 
     def __init__(self):
@@ -73,6 +87,34 @@ class Grafo:
                 d += self.Distancia(n.posicion, v.posicion)
         return d
 
+    def DistanciaPromedio(self): # ¿Se suman los que dan cero?
+        d = 0
+        noCero = 0
+        for (k, val) in self.Floyd_Warshall().items():
+            d = d + val
+            if val != 0:
+                noCero = noCero + 1
+        d = d / noCero
+        return d
+
+    def DensidadPromedio(self):
+        if self.dirigido:
+            print("error")
+            return -1
+        else:
+            densidadCluster = 0
+            for nodo in self.nodos: #v
+                m = 0 # Arcos de vecinos
+                for v1 in self.vecinos[nodo]: #u v
+                    for v2 in self.vecinos[nodo]: #w v
+                        if v1 in self.vecinos[v2]: #u w
+                            m += 1
+                n =  len(self.vecinos[nodo]) #v
+                if n > 1:
+                    densidadCluster += m / (n * (n - 1)) # la m está ya por 2
+            return cc / len(self.nodos)
+
+
     def Floyd_Warshall(self): # Camino más corto entre todos los pares de vértices
         d = {} # diccionario de distancias
         for n in self.nodos:
@@ -136,6 +178,21 @@ class Grafo:
                 u = v
             maximo += incr
         return maximo
+
+    def BreadthFirst(self, s, i, debug = False):
+        s.Color(255, 0, 0);
+        if debug:
+            self.nombre = "{:06d}".format(i)
+            self.DibujarGrafo(titulo = str(i))
+            remove('{:06d}.gnu'.format(i)) # https://pyformat.info/
+        i = i + 1
+        for v in self.vecinos[s]:
+            if v.color != "#00ff0000":
+                if debug:
+                    i = self.BreadthFirst(v, i, True)
+                else:
+                    self.BreadthFirst(v, i)
+        return i
 
     def DibujarGrafo(self, titulo = "", eps = False, mostrarPesos = False):
         self.nombre = str(self.nombre)
