@@ -47,7 +47,7 @@
 
   \maketitle
 
-  En este reporte se pretende demostrar el funcionamiento de un algoritmo de búsqueda en anchura a partir de un árbol binario desarrollado mediante un paquete para construir grafos alojado en \url{https://github.com/jbenavidesv87/FlujoRedes}.
+  En este reporte se pretende demostrar el funcionamiento de un algoritmo de búsqueda en anchura a partir de un árbol binario desarrollado mediante un paquete para construir grafos alojado en \url{https://github.com/jbenavidesv87/FlujoRedes} \cite{Grafos}.
 
   Un \textbf{grafo} es una representación mediante círculos u otras figuras, llamados \textbf{nodos}, de sistemas que cuentan con elementos o grupos de elementos que están relacionados entre sí. Para denotar estas relaciones entre los elementos, se pueden usar colores, posiciones y líneas que van de un nodo a otro, conocidas como \textbf{arcos}, mismas que pueden tener asignados valores numéricos, denominados \textbf{pesos}. Además, los nodos de los grafos pueden estar dispuestos de maneras ordenadas, como formando una circunferencia. Un ejemplo de esto puede verse en la figura \ref{grafoCircular} (p. \pageref{grafoCircular}).
 
@@ -98,17 +98,17 @@
   \begin{figure}[h]
     \includegraphics[width=0.7\textwidth]{arbolBinario}
     \centering
-    \caption{Grafo del árbol binario de 5 niveles con que se probará el algoritmo de búsqueda en anchura.}
+    \caption{Grafo del árbol binario de cinco niveles con que se probará el algoritmo de búsqueda en anchura.}
     \label{arbolBinario}
   \end{figure}
 
-  El algoritmo de búsqueda en anchura consiste en recorrer, a partir de un nodo inicial denominado $s$, todos sus vecinos y luego, de cada vecino, recorrer sus vecinos y así recursivamente. Se llama \textbf{visitar} al hecho de que el algoritmo recorra determinado nodo. Una peculiaridad de este algoritmo, es que un nodo sólo puede ser visitado una sola vez. En este caso, se eligió como parámetro para marcar a un nodo visitado el uso de color rojo. Así, el algoritmo sólo visita nodos de un color distinto al rojo, por lo que inicialmente se colorearon de gris los nodos de este ejemplo. El algoritmo desarrollado genera una imagen \texttt{png} cada vez que el algoritmo visita a un nodo y, finalmente, las imágenes resultantes de cada visita fueron agrupadas en una animación \texttt{gif}. La animación puede verse en \url{FALTA} y una secuencia de 4 imágenes del algoritmo en la figura \ref{ejemploBusqueda} (p. \pageref{ejemploBusqueda}).
+  El algoritmo de búsqueda en anchura consiste en recorrer, a partir de un nodo inicial denominado $s$, todos sus vecinos y luego, de cada vecino, recorrer sus vecinos y así recursivamente. Se llama \textbf{visitar} al hecho de que el algoritmo recorra determinado nodo. Una peculiaridad de este algoritmo, es que un nodo sólo puede ser visitado una sola vez. En este caso, se eligió como parámetro para marcar a un nodo visitado el uso de color rojo. Así, el algoritmo sólo visita nodos de un color distinto al rojo, por lo que inicialmente se colorearon de gris los nodos de este ejemplo. El algoritmo desarrollado genera una imagen \texttt{png} cada vez que el algoritmo visita a un nodo y, finalmente, las imágenes resultantes de cada visita fueron agrupadas en una animación \texttt{gif}. La animación puede verse en \url{https://github.com/jbenavidesv87/FlujoRedes/blob/master/ejemplos/06BFS/p.gif} y una secuencia de cuatro imágenes del algoritmo en la figura \ref{ejemploBusqueda} (p. \pageref{ejemploBusqueda}).
 
   \begin{figure}[h]
     \includegraphics[width=0.7\textwidth]{ejemploBusqueda}
     \centering
     \caption{Imágenes de las visitas $15$, $30$, $45$ y $60$ del grafo de ejemplo para este reporte.}
-    \label{arbolBinario}
+    \label{ejemploBusqueda}
   \end{figure}
 
   El código del algoritmo, implementado en el paquete mencionado es el siguiente:

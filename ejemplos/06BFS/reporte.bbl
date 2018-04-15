@@ -1,5 +1,10 @@
 \begin{thebibliography}{1}
 
+\bibitem{Grafos}
+José~Alberto Benavides~Vázquez.
+\newblock Grafos con python para flujo en redes.
+\newblock https://github.com/jbenavidesv87/FlujoRedes.
+
 \bibitem{artComputerProgramming}
 Donald~E. Knuth.
 \newblock {\em The Art of Computer Programming}.
