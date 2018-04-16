@@ -179,7 +179,25 @@ class Grafo:
             maximo += incr
         return maximo
 
-    def BreadthFirst(self, s, i, debug = False):
+    def Anchura(self, s, i, debug = False):
+        while len(s) > 0:
+            n = s.pop()
+            n.Color(255, 0, 0);
+            if debug:
+                self.nombre = "{:06d}".format(i)
+                self.DibujarGrafo(titulo = str(i))
+                remove('{:06d}.gnu'.format(i)) # https://pyformat.info/
+            i = i + 1
+            for v in self.vecinos[n]:
+                if v.color != "#00ff0000":
+                    s.insert(0, v)
+            if debug:
+                self.Anchura(s, i, True)
+            else:
+                self.Anchura(s, i)
+        return i
+
+    def Profundidad(self, s, i, debug = False):
         s.Color(255, 0, 0);
         if debug:
             self.nombre = "{:06d}".format(i)
@@ -189,9 +207,9 @@ class Grafo:
         for v in self.vecinos[s]:
             if v.color != "#00ff0000":
                 if debug:
-                    i = self.BreadthFirst(v, i, True)
+                    i = self.Profundidad(v, i, True)
                 else:
-                    self.BreadthFirst(v, i)
+                    self.Profundidad(v, i)
         return i
 
     def DibujarGrafo(self, titulo = "", eps = False, mostrarPesos = False):

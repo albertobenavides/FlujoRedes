@@ -32,5 +32,7 @@ for nivel in range(1, niveles + 1):
 
 #G.DibujarGrafo()
 
-G.BreadthFirst(nodo, 0, True)
+s = []
+s.append(nodo)
+G.Anchura(s, 0, True)
 system("magick -delay 10 0*.png p.gif")
