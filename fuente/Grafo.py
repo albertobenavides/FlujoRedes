@@ -12,7 +12,7 @@
 #Graficar la doble y
 #Tiempos que deberían ser O(n^3)
 
-from math import sqrt
+from math import sqrt, cos, sin, pi
 from os import system, remove
 class Grafo:
 
@@ -211,6 +211,23 @@ class Grafo:
                 else:
                     self.Profundidad(v, i)
         return i
+
+    # Toma los nodos a ser dispuestos de manera circular; y el radio y el centro de la cirfunferencia a la que se adscribirán
+    def Circular(self, nodos, radio = 0.5, centro = (0.5, 0.5)):
+        N = len(nodos)
+        r = radio # Radio de la circunferencia
+        P = 2 * pi * r # Perímetro de la circunferencia
+        if N > 15:
+            rNodo = P / N / 3 # Radio para cada nodo
+        else:
+            rNodo = P / 15 / 3 # Radio para cada nodo
+        theta = 2 * 3.14 / N # Fracción angular que ocupará cada nodo
+        for i in range(N):
+            n = nodos[i]
+            n.radio = rNodo
+            n.posicion = (
+                centro[0] + r * cos(theta * i), centro[1] + r * sin(theta * i)
+            )
 
     def DibujarGrafo(self, titulo = "", eps = False, mostrarPesos = False):
         self.nombre = str(self.nombre)

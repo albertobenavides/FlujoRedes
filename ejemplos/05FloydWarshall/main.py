@@ -1,10 +1,3 @@
-# Documentación de modificaciones a los algoritmos de la profe
-# Revisar con pruebas estadísticas si los datos son normalmente distribuidos
-# ¡¡¡Ajuste de curvas!!!; gnuplot con fit()
-# Ver qué tanto se ajusta lo teórico esperado con lo experimental y describir los comportamientos
-# Definir curva teórica y experimental
-# Buscar en Folk-Fulkerson
-
 import sys
 sys.path.append('../../fuente/')
 
