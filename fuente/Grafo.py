@@ -1,6 +1,4 @@
-#Agregar un promedio de distancias. Avrdist(G); clustcoef(G)
 # Graficar distancia y clustercoeficient por
-# Círculo perfecto. k es 1, entonces te conectas con los vecinos.
 # Función para calcular una cota superior que limita la distancia entre nodos.
 # Probabilidad p para agregar aristas al azar con doble ciclo:
 
@@ -87,17 +85,17 @@ class Grafo:
                 d += self.Distancia(n.posicion, v.posicion)
         return d
 
-    def DistanciaPromedio(self): # ¿Se suman los que dan cero?
+    def DistanciaPromedio(self):
         d = 0
         noCero = 0
-        for (k, val) in self.Floyd_Warshall().items():
+        for (k, val) in self.Floyd_Warshall().items(): # De todos los caminos más cortos entre todos los pares de vértices
             d = d + val
             if val != 0:
                 noCero = noCero + 1
         d = d / noCero
         return d
 
-    def DensidadPromedio(self):
+    def DensidadPromedio(self): # ClusterCoeficient
         if self.dirigido:
             print("error")
             return -1
@@ -221,7 +219,7 @@ class Grafo:
             rNodo = P / N / 3 # Radio para cada nodo
         else:
             rNodo = P / 15 / 3 # Radio para cada nodo
-        theta = 2 * 3.14 / N # Fracción angular que ocupará cada nodo
+        theta = 2 * pi / N # Fracción angular que ocupará cada nodo
         for i in range(N):
             n = nodos[i]
             n.radio = rNodo
