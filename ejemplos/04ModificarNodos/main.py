@@ -3,7 +3,7 @@ sys.path.append('../../fuente/')
 
 from Grafo import Grafo
 from Nodo import Nodo
-from random import random, sample
+from random import random
 from math import sqrt, floor
 
 N = 20

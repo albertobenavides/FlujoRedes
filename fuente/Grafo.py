@@ -110,7 +110,7 @@ class Grafo:
                 n =  len(self.vecinos[nodo]) #v
                 if n > 1:
                     densidadCluster += m / (n * (n - 1)) # la m está ya por 2
-            return cc / len(self.nodos)
+            return densidadCluster / len(self.nodos)
 
 
     def Floyd_Warshall(self): # Camino más corto entre todos los pares de vértices
