@@ -100,17 +100,17 @@ class Grafo:
             print("error")
             return -1
         else:
-            densidadCluster = 0
-            for nodo in self.nodos: #v
+            coeficienteCluster = 0
+            for nodo in self.nodos:
                 m = 0 # Arcos de vecinos
-                for v1 in self.vecinos[nodo]: #u v
-                    for v2 in self.vecinos[nodo]: #w v
-                        if v1 in self.vecinos[v2]: #u w
+                for v1 in self.vecinos[nodo]:
+                    for v2 in self.vecinos[nodo]:
+                        if v1 in self.vecinos[v2]:
                             m += 1
-                n =  len(self.vecinos[nodo]) #v
+                n =  len(self.vecinos[nodo])
                 if n > 1:
-                    densidadCluster += m / (n * (n - 1)) # la m está ya por 2
-            return densidadCluster / len(self.nodos)
+                    coeficienteCluster += m / (n * (n - 1)) # la m está ya por 2
+            return coeficienteCluster / len(self.nodos)
 
 
     def Floyd_Warshall(self): # Camino más corto entre todos los pares de vértices
