@@ -67,7 +67,7 @@ from math import sqrt, floor
 from os import system, remove
 
 debug = True
-k = 10 # lado
+k = 4 # lado
 k = k ** 2
 L = 0 # lambda; distancias al azar
 
@@ -80,7 +80,6 @@ for l in range(1, int(sqrt(k)) + 1): #Distancia Manhattan de conexiones entre ve
     for p in range(0, 120, 20):
         p = p / 1000
         G = Grafo()
-        G.dirigido = True
 
         for i in range(k):
             n = Nodo()
@@ -105,11 +104,14 @@ for l in range(1, int(sqrt(k)) + 1): #Distancia Manhattan de conexiones entre ve
 
     # Se conectan tantos vecinos a distancia Manhattan desde cada nodo como l especifique
         if l > 1:
+            a = []
             for n in G.nodos:
-                vecinos = set(G.vecinos[n])
-                for v in vecinos:
-                    G.PasoManhattan(n, v, l - 1)
+                for v in G.vecinos[n]:
+                    a = G.PasoManhattanDirigido(n, v, l - 1, a)
+            for par in a:
+                G.ConectarNodos(par[0], par[1])
 
+        G.dirigido = True
         for n in G.nodos: # se agregan saltos cuánticos dada una probabilidad p
             if random() < p: # Hacer esto una función que conecte un nodo con alguno disponible
                 candidatos = set(G.nodos) - set([n]) - set(G.vecinos[n])
