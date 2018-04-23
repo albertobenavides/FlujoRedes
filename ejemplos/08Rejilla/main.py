@@ -62,51 +62,65 @@ sys.path.append('../../fuente/')
 
 from Grafo import Grafo
 from Nodo import Nodo
-from random import random
+from random import random, sample
 from math import sqrt, floor
 from os import system, remove
 
 debug = True
 k = 10 # lado
 k = k ** 2
-l = 4 # Distancia Manhattan de conexiones entre vecinos
+L = 0 # lambda; distancias al azar
 
 lado = floor(sqrt(k))
-for l in range(1, int(sqrt(k)) + 1):
-    G = Grafo()
-    G.dirigido = True
 
-    for i in range(k):
-        n = Nodo()
-        n.id = ""
-        if i == 0:
-            n.Color(255, 0, 0) # inicio
-        elif i == k-1:
-            n.Color(0, 0, 255) # fin
+# RECOMENDADO: Hacer entre l = [1, 3] con valores enteros
+for l in range(1, int(sqrt(k)) + 1): #Distancia Manhattan de conexiones entre vecinos; conexiones simétricas;
+    if l > 3:
+        break
+    for p in range(0, 120, 20):
+        p = p / 1000
+        G = Grafo()
+        G.dirigido = True
 
-        G.AgregarNodo(n)
+        for i in range(k):
+            n = Nodo()
+            n.id = ""
+            if i == 0:
+                n.Color(255, 0, 0) # inicio
+            elif i == k-1:
+                n.Color(0, 0, 255) # fin
 
-    G.Cuadrado(G.nodos)
+            G.AgregarNodo(n)
+
+        G.Cuadrado(G.nodos)
 
 
-    # Se conectan todos en l 1 hasta Manhattan
-    for i in range(k - 1):
-        if i % lado != lado - 1:
-            G.ConectarNodos(G.nodos[i], G.nodos[i + 1])
+        # Se conectan todos en l 1 hasta Manhattan
+        for i in range(k - 1):
+            if i % lado != lado - 1:
+                G.ConectarNodos(G.nodos[i], G.nodos[i + 1])
 
-        if int(i / lado) < lado and i < lado ** 2 - lado:
-            G.ConectarNodos(G.nodos[i], G.nodos[i + lado])
+            if int(i / lado) < lado and i < lado ** 2 - lado:
+                G.ConectarNodos(G.nodos[i], G.nodos[i + lado])
 
-# ¿Se tiene que conectar con TODOS los que estén al alcance?
-    if l > 1:
-        for n in G.nodos:
-            vecinos = set(G.vecinos[n])
-            for v in vecinos:
-                G.PasoManhattan(n, v, l - 1)
-    if debug:
-        G.nombre = "img/{0:03d}".format(l)
-        G.DibujarGrafo("l = {}".format(l))
-        remove("img/{0:03d}.gnu".format(l))
+    # Se conectan tantos vecinos a distancia Manhattan desde cada nodo como l especifique
+        if l > 1:
+            for n in G.nodos:
+                vecinos = set(G.vecinos[n])
+                for v in vecinos:
+                    G.PasoManhattan(n, v, l - 1)
+
+        for n in G.nodos: # se agregan saltos cuánticos dada una probabilidad p
+            if random() < p: # Hacer esto una función que conecte un nodo con alguno disponible
+                candidatos = set(G.nodos) - set([n]) - set(G.vecinos[n])
+                if len(candidatos) > 0:
+                    v = sample(candidatos, 1)[0]
+                    G.ConectarNodos(n, v, c = (255, 0, 0))
+
+        if debug:
+            G.nombre = "img/l{0:03d}p{1:03d}".format(l, int(p * 1000))
+            G.DibujarGrafo("l = {0}; p = {1}".format(l, int(p * 1000)))
+            remove("img/l{0:03d}p{1:03d}.gnu".format(l, int(p * 1000)))
 
 if debug:
-    system("magick -delay 15 img/0*.png ejemplo.gif")
+    system("magick -delay 15 img/l*.png ejemplo.gif")

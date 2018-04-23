@@ -11,6 +11,7 @@ class Grafo:
         self.nodos = [] # un conjunto
         self.pesos = dict() # un mapeo de pesos de aristas
         self.vecinos = dict() # un mapeo
+        self.arcosColor = dict() # Hacer clase de Arco y agergar si son dirigidos a esto y no al grafo
 
     #def __repr__(self): # https://stackoverflow.com/questions/1984162/purpose-of-pythons-repr
         #return self.__str__()
@@ -36,13 +37,19 @@ class Grafo:
         self.dirigido = temp
         self.nodos.remove(n)
 
-    def ConectarNodos(self, n1, n2, peso = 1):
+    def ConectarNodos(self, n1, n2, peso = 1, c = (0, 0, 0)):
+        color = "#"
+        color += "00"
+        color += format(c[0], '02x')
+        color += format(c[1], '02x')
+        color += format(c[2], '02x')
         if n1 not in self.nodos:
             self.AgregarNodo(n1)
         if n2 not in self.nodos:
             self.AgregarNodo(n2)
         self.vecinos[n1].add(n2)
         self.pesos[(n1, n2)] = peso
+        self.arcosColor[(n1, n2)] = color
         if not self.dirigido:
             self.vecinos[n2].add(n1) # Si no es dirigido, también debería haber una conexión bivalente
             self.pesos[(n2, n1)] = peso
@@ -55,7 +62,7 @@ class Grafo:
                 if n in self.vecinos[k]: # Si n está en una de las vecindades de k
                     self.pesos[(k, n)] = p
 
-    def EliminarVecindades(self, n):
+    def EliminarVecindades(self, n): # Agregar la eliminación de colores del arco
         for v in self.vecinos[n]: # Por cada vecino de n
             del(self.pesos[(n, v)]) # Eliminar los pesos entre n y sus vecinos
         self.vecinos[n] = set() # Se eliminan los vecinos de n
@@ -227,6 +234,7 @@ class Grafo:
             n.posicion = ((i % lado) / lado, 1 - int(i / lado) / (lado - 1)) # la parte de la y tiene 1 - para que empiece desde arriba y no desde abajo
 
     def PasoManhattan(self, n, v, paso): # self es grafo, n es el nodo papá, v es el que está entrando
+    # Agregar para vecinos no dirigidos
         for v1 in self.vecinos[v]:
             self.ConectarNodos(n, v1)
             if paso > 1:
@@ -279,7 +287,7 @@ class Grafo:
                     y2 = y2 + yVecino
 
                     print("set arrow " + str(i) +
-                        " from " + str(x1) + "," + str(y1) + " to " + str(x2) + "," + str(y2) + " linewidth " + str(self.pesos[(n, v)]), end = "", file = f) # https://stackoverflow.com/questions/5598181/multiple-prints-on-the-same-line
+                        " from " + str(x1) + "," + str(y1) + " to " + str(x2) + "," + str(y2) + " linewidth " + str(self.pesos[(n, v)]) + "lc rgb '" + self.arcosColor[(n, v)] + "'", end = "", file = f) # https://stackoverflow.com/questions/5598181/multiple-prints-on-the-same-line
 
                     if self.dirigido:
                         print("", file = f)
