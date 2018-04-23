@@ -75,7 +75,43 @@
 
   \section{Simulación y resultados}
 
-  Se crearon grafos y se corrieron los algoritmos de distancia promedio y densidad promedio de cada grafo variando $N = {8, 16, 32, 64, 128}$ nodos, $k = [1, \lfloor n / 2 \rfloor]$ con $k \in \mathrm{N}$, y $p = (0.2i)_{i= 0}^{25}$ con $p \in \mathrm{R}$. Los resultados se graficaron en una imagen que muestra el comportamiento de la distancia promedio y densidad promedio del grafo frente al incremento de la probabilidad de que se unan los nodos no unidos dado $k$. Se generó una animación que muestra todas las gráficas generadas de esta forma que puede consultarse en \url{FALTA}
+  Se crearon grafos y se corrieron los algoritmos de distancia promedio y densidad promedio de cada grafo variando $N = \{ 8, 16, 32, 64, 128 \}$ nodos, $k = [1, \lfloor n / 2 \rfloor]$ con $k \in \mathbb{N}$, y $p = (0.2i)_{i= 0}^{25}$ con $p \in \mathbb{R}$. Los resultados se graficaron en una imagen que muestra el comportamiento de la distancia promedio y densidad promedio del grafo frente al incremento de la probabilidad de que se unan los nodos no unidos dado $k$. Se generó una animación que muestra todas las gráficas generadas de esta forma que puede consultarse en \url{FALTA}. Se muestran, además, las figuras de algunas imágenes para discutirlas.
+
+  En las gráficas correspondientes a $N = \{ 16, 32, 64 y 128 \} $, mostradas en la figura \ref{ejemplok1} (p. \pageref{ejemplok1}), muestran una tendencia de las distancias promedio de disminuir de manera exponencial de uno hasta que se alcanzan distancias promedio cercanas a cero cuando la probabilidad de conexión entre nodos no conectados por $k$ es $0.5$. Las densidades promedio siguen una relación lineal que tiende al alza, desde valores cercanos a cero hasta valores cercanos a $1$, $0.5$, $0.25$, $0.125$ respectivamente.
+
+  \begin{figure}[h]
+    \includegraphics[width=1\textwidth]{ejemplok1}
+    \centering
+    \caption{Gráficas de distancia promedio (azul) y densidad promedio (rojo) frente a la probabilidad de conexión para grafos con $N = \{ 16, 32, 64, 128 \} $ nodos y $k = 1$.}
+    \label{ejemplok1}
+  \end{figure}
+
+  Al aumentar la $k$ hasta $N / 4$, es decir, la mitad de los valores de $k$ posibles por $N$ nodos, se obtienen las gráficas de la figura \ref{ejemplokMedia} (p. \pageref{ejemplokMedia}). En dichas gráficas se puede apreciar que las distancias promedio se reducen conforme crece el número de nodos y que las densidades dejan de incrementar para estabilizarse en rangos de $0.6$ y $0.8$. Esto parece deberse a que mientras más nodos hay y más conexiones existen, las distancias entre nodos se minimizan por la cantidad de vecinos que se establecen tanto entre nodos adyacentes como entre nodos situados frente a otros. La densidad, por su cuenta, también se estabiliza pues al crecer el número de nodos, la probabilidad de que se conecten los no conectados por $k$ resulta suavizar la curva.
+
+  \begin{figure}[h]
+    \includegraphics[width=1\textwidth]{ejemplokMedia}
+    \centering
+    \caption{Gráficas de distancia promedio (azul) y densidad promedio (rojo) frente a la probabilidad de conexión para grafos con $N = \{ 16, 32, 64, 128 \} $ nodos y $k = N / 4$.}
+    \label{ejemplokMedia}
+  \end{figure}
+
+  La figura \ref{N128k002} (p. \pageref{N128k002}) contiene la gráfica de la simulación con $N = 128$ y $k = 2$, en la que se puede ver la manera en que la probabilidad de establecer vecindades modifica de manera inversa la distancia promedio y la densidad promedio del grafo.
+
+  \begin{figure}[h]
+    \includegraphics[width=1\textwidth]{N128k002}
+    \centering
+    \caption{Gráfica de distancia promedio (azul) y densidad promedio (rojo) frente a la probabilidad de conexión para el grafo con $N = 128$ nodos y $k = N / 4$.}
+    \label{N128k002}
+  \end{figure}
+
+  Finalmente, se comprueba que los tiempos de corrida de las simulaciones crecen de manera exponencial en la figura \ref{Tiempos} (p. \pageref{Tiempos}).
+
+  \begin{figure}[h]
+    \includegraphics[width=1\textwidth]{Tiempos}
+    \centering
+    \caption{Gráfica de tiempos de corrida (en segundos) en escala logarítmica contra $k$ para todos los grafos y probabilidades.}
+    \label{Tiempos}
+  \end{figure}
 
 
   \bibliography{biblio}{}
