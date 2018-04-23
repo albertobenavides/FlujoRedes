@@ -8,7 +8,33 @@
 \usepackage{booktabs}
 \usepackage{url}
 \usepackage{listings}%http://www.tex.ac.uk/FAQ-codelist.html
-\lstset{language=Python}
+\usepackage{color}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+  backgroundcolor=\color{backcolour},
+  commentstyle=\color{codegreen},
+  keywordstyle=\color{magenta},
+  numberstyle=\tiny\color{codegray},
+  stringstyle=\color{codepurple},
+  basicstyle=\footnotesize,
+  breakatwhitespace=false,
+  breaklines=true,
+  captionpos=b,
+  keepspaces=true,
+  numbers=left,
+  numbersep=5pt,
+  showspaces=false,
+  showstringspaces=false,
+  showtabs=false,
+  tabsize=2
+}
+
+\lstset{style=mystyle}
 \graphicspath{ {img/} }
 %\usepackage{enumitem}
 %\usepackage{tikz}
@@ -21,6 +47,10 @@
 
   \maketitle
 
+  Esta práctica se realizó a partir de un programa en desarrollo para flujo en redes alojado en \url{https://github.com/jbenavidesv87/FlujoRedes}. El código de esta práctica puede consultarse en \url{https://github.com/jbenavidesv87/FlujoRedes/tree/master/ejemplos/07Densidad} \cite{Grafos}.
+
+  \section{Introducción}
+
   Un \textbf{grafo ciclo} es un grafo en el que sus $n$ nodos están conectados uno tras otro, sin repeticiones, salvo por el úlitmo nodo que se conecta al primero para formar una figura que se asemeja a un polígono de $n$ lados. Por su parte, un \textbf{grafo completo} es un grafo ciclo en el que sus $n$ nodos están conectados con los restantes $n - 1$ nodos. En cuanto a las aristas, los grafos ciclo tienen la mínima cantidad de aristas necesarias para cumplir su definición y formar un ciclo, esto es $a = n$ aristas; mientras que los grafos completos poseen todas las aristas posibles que pueden establecerse sin repetir pares de nodos entre sí, a saber $a = n \cdot (n-1)/2$ aristas. A partir de estas descripciones, se puede definir un valor $k$ que especifique la cantidad de nodos vecinos con los que se conectará cada nodo de este tipo de grafos por cada uno de sus costado. Este valor $k$ puede tomar valores enteros del intervalo $[1, \lfloor n / 2 \rfloor]$. Por ejemplo, un grafo con seis nodos podría tener $k = \{ 1, 2, 3 \}$ que corresponden a $\{ 6, 12, 15 \}$ aristas en un polígono de 6 lados, como se puede constatar en la figura \ref{grafoEjemplo6} (p.\pageref{grafoEjemplo6}).
 
   \begin{figure}[h]
@@ -30,9 +60,25 @@
     \label{grafoEjemplo6}
   \end{figure}
 
-  
+  Para esta práctica se ha desarrollado un programa que genera grafos de este tipo a partir de la definición de la cantidad de nodos y del valor $k$. A manera de ejemplo, se creó una animación de un grafo de cuarenta nodos al que se incrementa el valor de $k$ cada iteración una unidad, desde uno hasta veinte. Esta animación puede consultarse en \url{FALTA} y algunas de las imágenes que la componen en la figura \ref{grafoEjemplo20} (p. \pageref{grafoEjemplo20}).
 
-  %\bibliography{biblio}{}
-  %\bibliographystyle{plain}
+  \begin{figure}[h]
+    \includegraphics[width=1\textwidth]{grafoEjemplo20}
+    \centering
+    \caption{Imágenes correspondientes a $k = \{ 1, 6, 13, 20 \}$ en un grafo de cuarenta nodos que forma un polígono regular de cuarenta lados.}
+    \label{grafoEjemplo20}
+  \end{figure}
+
+  Se implementaron dos algoritmos al código, uno para medir la distancia promedio entre nodos de un grafo y el otro para medir la densidad promedio de un grafo. La \textbf{distancia promedio} se calcula como media de las distancias entre todos los pares de nodos, obtenidas por un algoritmo de Floyd-Warshall. Esta distancia promedio se calcula para cada $k$ y se divide entre $k = 1$ para normalizar la salida, debido a que en $k = 1$ se tiene el promedio de las distancias más largas para cada grafo de este tipo. A su vez, la \textbf{densidad promedio} para cada nodo se calcula a partir de la cantidad de arcos entre sus vecinos entre el total de arcos que podrían establecerse entre sus vecinos, a saber $n (n -1)$ arcos en total. La densidad promedio para el grafo se calcula sumando todas las densidades promedio de los nodos y divididas entre el número de nodos.
+
+  Adicionalmente, se agregó al programa una variable $p$ que representa la probabilidad de que cada nodo se conecte con otro disponible.
+
+  \section{Simulación y resultados}
+
+  Se crearon grafos y se corrieron los algoritmos de distancia promedio y densidad promedio de cada grafo variando $N = {8, 16, 32, 64, 128}$ nodos, $k = [1, \lfloor n / 2 \rfloor]$ con $k \in \mathrm{N}$, y $p = (0.2i)_{i= 0}^{25}$ con $p \in \mathrm{R}$. Los resultados se graficaron en una imagen que muestra el comportamiento de la distancia promedio y densidad promedio del grafo frente al incremento de la probabilidad de que se unan los nodos no unidos dado $k$. Se generó una animación que muestra todas las gráficas generadas de esta forma que puede consultarse en \url{FALTA}
+
+
+  \bibliography{biblio}{}
+  \bibliographystyle{plain}
 
 \end{document}

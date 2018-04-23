@@ -1,15 +1,3 @@
-# Graficar distancia y clustercoeficient por
-# Función para calcular una cota superior que limita la distancia entre nodos.
-# Probabilidad p para agregar aristas al azar con doble ciclo:
-
-# Para todos los vértices, se buscan sus vecinos. Aristas entre vecinos mismos. Para cada x y para cada vecino de x; cuántos de los vecinos de x son vecinos entre ellos. Se dividiría entre cuántos vecinos eran, para saber cuántas aristas podrían tener.
-
-#implementar generador circular con base en n,k
-#función de la cota superior al promedio con base n, k; f(n, k)
-#dividir la distanciaPromedio entre esa función
-#Graficar la doble y
-#Tiempos que deberían ser O(n^3)
-
 from math import sqrt, cos, sin, pi
 from os import system, remove
 class Grafo:
@@ -97,18 +85,18 @@ class Grafo:
 
     def DensidadPromedio(self): # ClusterCoeficient
         if self.dirigido:
-            print("error")
+            print("Error, la densidad promedio se debe medir en un grafo no dirigido")
             return -1
         else:
             coeficienteCluster = 0
             for nodo in self.nodos:
-                m = 0 # Arcos de vecinos
-                for v1 in self.vecinos[nodo]:
-                    for v2 in self.vecinos[nodo]:
-                        if v1 in self.vecinos[v2]:
-                            m += 1
-                n =  len(self.vecinos[nodo])
+                n = len(self.vecinos[nodo])
                 if n > 1:
+                    m = 0 # Arcos con vecinos
+                    for v1 in self.vecinos[nodo]:
+                        for v2 in self.vecinos[nodo]:
+                            if v2 in self.vecinos[v1]:
+                                m = m + 1
                     coeficienteCluster += m / (n * (n - 1)) # la m está ya por 2
             return coeficienteCluster / len(self.nodos)
 
