@@ -64,32 +64,49 @@ from Grafo import Grafo
 from Nodo import Nodo
 from random import random
 from math import sqrt, floor
+from os import system, remove
 
-k = 20 # lado
+debug = True
+k = 10 # lado
 k = k ** 2
+l = 4 # Distancia Manhattan de conexiones entre vecinos
 
 lado = floor(sqrt(k))
+for l in range(1, int(sqrt(k)) + 1):
+    G = Grafo()
+    G.dirigido = True
 
-G = Grafo()
-G.dirigido = True
-
-for i in range(k):
-    n = Nodo()
-    if i == 0:
-        n.id = "s"
-    elif i == k-1:
-        n.id = "t"
-    else:
+    for i in range(k):
+        n = Nodo()
         n.id = ""
-    n.radio = 3 / k
-    n.posicion = ((i % lado) / lado, 1 - int(i / lado) / (lado - 1)) # la parte de la y tiene 1 - para que empiece desde arriba y no desde abajo
-    G.AgregarNodo(n)
+        if i == 0:
+            n.Color(255, 0, 0) # inicio
+        elif i == k-1:
+            n.Color(0, 0, 255) # fin
 
-for i in range(k - 1):
-    if i % lado != lado - 1:
-        G.ConectarNodos(G.nodos[i], G.nodos[i + 1])
+        G.AgregarNodo(n)
 
-    if int(i / lado) < lado and i < lado ** 2 - lado:
-        G.ConectarNodos(G.nodos[i], G.nodos[i + lado])
+    G.Cuadrado(G.nodos)
 
-G.DibujarGrafo("Rejilla")
+
+    # Se conectan todos en l 1 hasta Manhattan
+    for i in range(k - 1):
+        if i % lado != lado - 1:
+            G.ConectarNodos(G.nodos[i], G.nodos[i + 1])
+
+        if int(i / lado) < lado and i < lado ** 2 - lado:
+            G.ConectarNodos(G.nodos[i], G.nodos[i + lado])
+
+# ¿Se tiene que conectar con TODOS los que estén al alcance?
+    if l > 1:
+        for n in G.nodos:
+            vecinos = set(G.vecinos[n])
+            for v in vecinos:
+                G.PasoManhattan(n, v, l - 1)
+    if debug:
+        G.nombre = "img/{0:03d}".format(l)
+        G.DibujarGrafo("l = {}".format(l))
+        remove("img/{0:03d}.gnu".format(l))
+
+if debug:
+    system("magick -delay 15 img/0*.png ejemplo.gif")

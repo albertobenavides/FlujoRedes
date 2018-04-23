@@ -1,4 +1,7 @@
-from math import sqrt, cos, sin, pi
+# latex: subfigure subfig sub algo... gnuplot
+# multiplot con eps subfloat
+
+from math import sqrt, cos, sin, pi, floor
 from os import system, remove
 class Grafo:
 
@@ -214,6 +217,20 @@ class Grafo:
             n.posicion = (
                 centro[0] + r * cos(theta * i), centro[1] + r * sin(theta * i)
             )
+
+    def Cuadrado(self, nodos):
+        N = len(nodos) # Total de nodos
+        lado = floor(sqrt(N))
+        for i in range(N):
+            n = nodos[i]
+            n.radio = 1 / N
+            n.posicion = ((i % lado) / lado, 1 - int(i / lado) / (lado - 1)) # la parte de la y tiene 1 - para que empiece desde arriba y no desde abajo
+
+    def PasoManhattan(self, n, v, paso): # self es grafo, n es el nodo papá, v es el que está entrando
+        for v1 in self.vecinos[v]:
+            self.ConectarNodos(n, v1)
+            if paso > 1:
+                self.PasoManhattan(n, v1, paso - 1)
 
     def DibujarGrafo(self, titulo = "", eps = False, mostrarPesos = False):
         self.nombre = str(self.nombre)

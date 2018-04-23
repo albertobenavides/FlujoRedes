@@ -8,6 +8,7 @@ set style data boxplot
 set logscale y
 set ylabel "Logaritmo de tiempo en segundos"
 set xlabel "k"
+set datafile separator ','
 plot "todos.csv" using 1:4:(0.5):2
 
 #http://soc.if.usp.br/manual/gnuplot-doc/htmldocs/boxplot.html
