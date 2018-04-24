@@ -67,62 +67,60 @@ from math import sqrt, floor
 from os import system, remove
 
 debug = True
-k = 4 # lado
-k = k ** 2
 L = 0 # lambda; distancias al azar
 
-lado = floor(sqrt(k))
+for k in range(3, 11): # Hasta k = 10 nodos por lado
+    k = k ** 2
+    lado = floor(sqrt(k))
+    for l in range(1, int(sqrt(k)) + 1): #Distancia Manhattan de conexiones entre vecinos; conexiones simétricas;
+        if l > 3: # RECOMENDADO: Hacer entre l = [1, 3] con valores enteros
+            break
+        for p in range(0, 120, 20):
+            p = p / 1000
+            G = Grafo()
 
-# RECOMENDADO: Hacer entre l = [1, 3] con valores enteros
-for l in range(1, int(sqrt(k)) + 1): #Distancia Manhattan de conexiones entre vecinos; conexiones simétricas;
-    if l > 3:
-        break
-    for p in range(0, 120, 20):
-        p = p / 1000
-        G = Grafo()
+            for i in range(k):
+                n = Nodo()
+                n.id = ""
+                if i == 0:
+                    n.Color(255, 0, 0) # inicio
+                elif i == k-1:
+                    n.Color(0, 0, 255) # fin
 
-        for i in range(k):
-            n = Nodo()
-            n.id = ""
-            if i == 0:
-                n.Color(255, 0, 0) # inicio
-            elif i == k-1:
-                n.Color(0, 0, 255) # fin
+                G.AgregarNodo(n)
 
-            G.AgregarNodo(n)
-
-        G.Cuadrado(G.nodos)
+            G.Cuadrado(G.nodos)
 
 
-        # Se conectan todos en l 1 hasta Manhattan
-        for i in range(k - 1):
-            if i % lado != lado - 1:
-                G.ConectarNodos(G.nodos[i], G.nodos[i + 1])
+            # Se conectan todos en l 1 hasta Manhattan
+            for i in range(k - 1):
+                if i % lado != lado - 1:
+                    G.ConectarNodos(G.nodos[i], G.nodos[i + 1])
 
-            if int(i / lado) < lado and i < lado ** 2 - lado:
-                G.ConectarNodos(G.nodos[i], G.nodos[i + lado])
+                if int(i / lado) < lado and i < lado ** 2 - lado:
+                    G.ConectarNodos(G.nodos[i], G.nodos[i + lado])
 
-    # Se conectan tantos vecinos a distancia Manhattan desde cada nodo como l especifique
-        if l > 1:
-            a = []
-            for n in G.nodos:
-                for v in G.vecinos[n]:
-                    a = G.PasoManhattanDirigido(n, v, l - 1, a)
-            for par in a:
-                G.ConectarNodos(par[0], par[1])
+        # Se conectan tantos vecinos a distancia Manhattan desde cada nodo como l especifique
+            if l > 1:
+                a = [] # Nuevas vecindades
+                for n in G.nodos:
+                    for v in G.vecinos[n]:
+                        a = G.PasoManhattan(n, v, l - 1, a)
+                for par in a:
+                    G.ConectarNodos(par[0], par[1])
 
-        G.dirigido = True
-        for n in G.nodos: # se agregan saltos cuánticos dada una probabilidad p
-            if random() < p: # Hacer esto una función que conecte un nodo con alguno disponible
-                candidatos = set(G.nodos) - set([n]) - set(G.vecinos[n])
-                if len(candidatos) > 0:
-                    v = sample(candidatos, 1)[0]
-                    G.ConectarNodos(n, v, c = (255, 0, 0))
+            G.dirigido = True
+            for n in G.nodos: # se agregan saltos cuánticos dada una probabilidad p
+                if random() < p: # Hacer esto una función que conecte un nodo con alguno disponible
+                    candidatos = set(G.nodos) - set([n]) - set(G.vecinos[n])
+                    if len(candidatos) > 0:
+                        v = sample(candidatos, 1)[0]
+                        G.ConectarNodos(n, v, c = (255, 0, 0))
 
-        if debug:
-            G.nombre = "img/l{0:03d}p{1:03d}".format(l, int(p * 1000))
-            G.DibujarGrafo("l = {0}; p = {1}".format(l, int(p * 1000)))
-            remove("img/l{0:03d}p{1:03d}.gnu".format(l, int(p * 1000)))
+            if debug:
+                G.nombre = "img/k{2:03d}l{0:03d}p{1:03d}".format(l, int(p * 1000), k)
+                G.DibujarGrafo("k = {2}; l = {0}; p = {1}".format(l, p, int(sqrt(k))))
+                remove("img/k{2:03d}l{0:03d}p{1:03d}.gnu".format(l, int(p * 1000), k))
 
 if debug:
-    system("magick -delay 15 img/l*.png ejemplo.gif")
+    system("magick -delay 15 img/k*.png ejemplo.gif")

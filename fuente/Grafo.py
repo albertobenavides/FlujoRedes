@@ -234,20 +234,19 @@ class Grafo:
             n.radio = 1 / N
             n.posicion = ((i % lado) / (lado - 1), 1 - int(i / lado) / (lado - 1)) # la parte de la y tiene 1 - para que empiece desde arriba y no desde abajo
 
-    def PasoManhattan(self, n, v, paso): # self es grafo, n es el nodo papá, v es el que está entrando
-    # Agregar para vecinos no dirigidos
-        for v1 in self.vecinos[v]:
-            self.ConectarNodos(n, v1)
-            if paso > 1:
-                self.PasoManhattan(n, v1, paso - 1)
-
-    def PasoManhattanDirigido(self, n, v, paso, nuevasVecindades):
-        for v1 in self.vecinos[v]:
-            if n != v1:
-                nuevasVecindades.append((n, v1))
-            if paso > 1:
-                self.PasoManhattanDirigido(n, v1, paso - 1, nuevasVecindades)
+    def PasoManhattan(self, n, v, paso, nuevasVecindades = None): # self es grafo, n es el nodo papá, v es el que está entrando
+    # Cambiar esto para que sólo haga falta pasar el grafo y que se devuelva el grafo conectado con Manhattan completo :D :D :D
+        if self.dirigido:
+            for v1 in self.vecinos[v]:
+                self.ConectarNodos(n, v1)
+                if paso > 1:
+                    self.PasoManhattan(n, v1, paso - 1)
         else:
+            for v1 in self.vecinos[v]:
+                if n != v1:
+                    nuevasVecindades.append((n, v1))
+                if paso > 1:
+                    self.PasoManhattan(n, v1, paso - 1, nuevasVecindades)
             return nuevasVecindades
 
     def DibujarGrafo(self, titulo = "", eps = False, mostrarPesos = False):
