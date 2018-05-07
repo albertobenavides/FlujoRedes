@@ -35,7 +35,7 @@ Dibujar grosor o color en los arcos. Implementar colores a los arcos dependiendo
 
 Percolar aristas es eliminar aristas. Se elimina una arista al azar. Esto puede reduci el flujo máximo. Se quitan una tras otra y se ve qué le pasa al flujo máximo. Se dejan de quitar aristas cuando s ya no alcanza a t. Ya que no es posible llegar de s a t, no se sigue.
 
-Se quiere ver cuándo es el maxflow (y) y cua´ntas aristas se han quitado (x). Conviene correr réplicas (y hacer diagramas de caja y bigotes entre quitar 1, 2, 3... aristas)
+Se quiere ver cuándo es el maxflow (y) y cuántas aristas se han quitado (x). Conviene correr réplicas (y hacer diagramas de caja y bigotes entre quitar 1, 2, 3... aristas)
 
 Ejemplo: red fluvial, qué tanto se disminuye la capacidad del sistema cuando uno se tapa
 
@@ -43,7 +43,7 @@ Percolación de vértices: Quitar un nodo y todas las aristas que entran y salen
 
 Mientras se percola, se ve el efecto del maxflow. Ver qué le pasa al tiempo de ejecución del algoritmo. Si se pone más rápido o más lento. Quizás debería ponerse más rápido. Y también es posible que no se ponga más rápido. A ver qué. El tipo de ejecución no depende sólo del tamaño. Graficar para ver ver qué pasa mientras se percola.
 
-1)Descripción de la implementación del modelo
+1) Descripción de la implementación del modelo
 2) Describir cómo se implementa la percolación de aristas
 3) qué pasó al maxflow
 4) percolación de vértices y qué les pasa.
@@ -65,9 +65,11 @@ from Nodo import Nodo
 from random import random, sample
 from math import sqrt, floor
 from os import system, remove
+from copy import deepcopy
+from time import clock
 
-debug = True
-L = 0 # lambda; distancias al azar
+debug = False
+veces = 20
 
 for k in range(3, 11): # Hasta k = 10 nodos por lado
     k = k ** 2
@@ -75,6 +77,10 @@ for k in range(3, 11): # Hasta k = 10 nodos por lado
     for l in range(1, int(sqrt(k)) + 1): #Distancia Manhattan de conexiones entre vecinos; conexiones simétricas;
         if l > 3: # RECOMENDADO: Hacer entre l = [1, 3] con valores enteros
             break
+
+        with open('results/k{0:03d}l{1:03d}.csv'.format(k, l), 'a') as f:
+            f.write('a p ford tiempo\n')
+            
         for p in range(0, 120, 20):
             p = p / 1000
             G = Grafo()
@@ -121,6 +127,33 @@ for k in range(3, 11): # Hasta k = 10 nodos por lado
                 G.nombre = "img/k{2:03d}l{0:03d}p{1:03d}".format(l, int(p * 1000), k)
                 G.DibujarGrafo("k = {2}; l = {0}; p = {1}".format(l, p, int(sqrt(k))))
                 remove("img/k{2:03d}l{0:03d}p{1:03d}.gnu".format(l, int(p * 1000), k))
+
+            GTemp = deepcopy(G) # Copia del grafo para poder utilizarlo después de borrarle - https://docs.python.org/3/library/copy.html#copy.deepcopy
+
+            with open('results/k{0:03d}l{1:03d}.csv'.format(k, l), 'a') as f:
+                for vez in range(veces):
+                    G = deepcopy(GTemp)
+                    llega = True
+                    a = 0 # Cantidad de arcos eliminados
+                    while llega:
+                        tiempo = clock()
+                        ford = G.Ford_Fulkerson(G.nodos[0], G.nodos[k - 1])
+                        tiempo = clock() - tiempo
+                        f.write('{0} {1} {2} {3}\n'.format(a, p, ford, tiempo))
+                        if ford == 0:
+                            llega = False
+
+                        n = sample(set(G.nodos), 1)[0]
+                        candidatos = set(G.vecinos[n])
+                        if len(candidatos) > 0:
+                            v = sample(set(G.vecinos[n]), 1)[0]
+                            if v:
+                                del(G.pesos[(n, v)])
+                                G.vecinos[n].remove(v)
+                                if n in G.vecinos[v]:
+                                    del(G.pesos[(v, n)])
+                                    G.vecinos[v].remove(n)
+                                a = a + 1
 
 if debug:
     system("magick -delay 15 img/k*.png ejemplo.gif")
