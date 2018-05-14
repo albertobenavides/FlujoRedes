@@ -66,11 +66,13 @@ class Grafo:
     def EliminarVecindades(self, n): # Eliminar también los colores de arco
         for v in self.vecinos[n]: # Por cada vecino de n
             del(self.pesos[(n, v)]) # Eliminar los pesos entre n y sus vecinos
+            del(self.arcosColor[(n, v)])
         self.vecinos[n] = set() # Se eliminan los vecinos de n
         if not self.dirigido: # Si no es un grafo dirigido
             for k in list(self.vecinos): # Por cada k nodos que tengan vecindades
                 if n in self.vecinos[k]: # Si n está en una de las vecindades de k
                     del(self.pesos[(k, n)]) # Se eliminan sus pesos
+                    del(self.arcosColor[(k, n)])
                     self.vecinos[k].remove(n) # Y se remueve dicha vecindad con n
 
     def Distancia(self, p1, p2):
@@ -333,3 +335,4 @@ class Grafo:
             #print("quit", file = f)
 
         system("gnuplot " + self.nombre +".gnu")
+        remove('{}.gnu'.format(self.nombre))
