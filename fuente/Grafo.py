@@ -1,6 +1,3 @@
-# latex: subfigure subfig sub algo... gnuplot
-# multiplot con eps subfloat
-
 from math import sqrt, cos, sin, pi, floor
 from os import system, remove
 class Grafo:
@@ -30,13 +27,6 @@ class Grafo:
                 return n
         return None
 
-    def EliminarNodo(self, n):
-        temp = self.dirigido
-        self.dirigido = False
-        self.EliminarVecindades(n)
-        self.dirigido = temp
-        self.nodos.remove(n)
-
     def ConectarNodos(self, n1, n2, peso = 1, c = (0, 0, 0)):
         color = "#"
         color += "00"
@@ -55,13 +45,12 @@ class Grafo:
             self.pesos[(n2, n1)] = peso
             self.arcosColor[(n2, n1)] = color
 
-    def ModificarPesos(self, n, p):
-        for v in self.vecinos[n]:
-            self.pesos[(n, v)] = p
-        if not self.dirigido: # Si no es un grafo dirigido
-            for k in list(self.vecinos): # Por cada k nodos que tengan vecindades
-                if n in self.vecinos[k]: # Si n está en una de las vecindades de k
-                    self.pesos[(k, n)] = p
+    def EliminarNodo(self, n):
+        temp = self.dirigido
+        self.dirigido = False
+        self.EliminarVecindades(n)
+        self.dirigido = temp
+        self.nodos.remove(n)
 
     def EliminarVecindades(self, n): # Eliminar también los colores de arco
         for v in self.vecinos[n]: # Por cada vecino de n
@@ -74,6 +63,14 @@ class Grafo:
                     del(self.pesos[(k, n)]) # Se eliminan sus pesos
                     del(self.arcosColor[(k, n)])
                     self.vecinos[k].remove(n) # Y se remueve dicha vecindad con n
+
+    def ModificarPesos(self, n, p):
+        for v in self.vecinos[n]:
+            self.pesos[(n, v)] = p
+        if not self.dirigido: # Si no es un grafo dirigido
+            for k in list(self.vecinos): # Por cada k nodos que tengan vecindades
+                if n in self.vecinos[k]: # Si n está en una de las vecindades de k
+                    self.pesos[(k, n)] = p
 
     def Distancia(self, p1, p2):
         d = sqrt((p1[0] - p2[0]) ** 2 + (p1[1] - p2[1]) ** 2)
