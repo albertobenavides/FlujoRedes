@@ -267,8 +267,8 @@ class Grafo:
                 n.id = str(n.id)
                 if len(n.id) > 0:
                     n.id = str(n.id)
-                    print("set label '" + str(n.id) + "' at " + str(n.posicion[0]) + "," + str(n.posicion[1]) + " left offset char -" + str(0.4 * len(n.id)) + ",0", file = f) # https://stackoverflow.com/questions/23690551/how-do-you-assign-a-label-when-using-set-object-circle-in-gnuplot
-                print("set object circle at " + str(n.posicion[0]) + "," + str(n.posicion[1]) + " fillcolor rgb '" + n.color + "' fillstyle solid noborder size " + str(n.radio), file = f) # http://www.bersch.net/gnuplot-doc/layers.html
+                    print("set label '" + str(n.id) + "' at " + str(n.posicion[0]) + "," + str(n.posicion[1]) + " left offset char -" + str(0.4 * len(n.id)) + ",0 front", file = f) # https://stackoverflow.com/questions/23690551/how-do-you-assign-a-label-when-using-set-object-circle-in-gnuplot
+                print("set object circle at " + str(n.posicion[0]) + "," + str(n.posicion[1]) + " fillcolor rgb '" + n.color + "' fillstyle solid noborder front size " + str(n.radio), file = f) # http://www.bersch.net/gnuplot-doc/layers.html
 
                 n.id = temp # Corregida el cambio de nombre del identificador
 
@@ -295,7 +295,7 @@ class Grafo:
                     y2 = y2 + yVecino
 
                     print("set arrow " + str(i) +
-                        " from " + str(x1) + "," + str(y1) + " to " + str(x2) + "," + str(y2) + " linewidth " + str(self.pesos[(n, v)]) + "lc rgb '" + self.arcosColor[(n, v)] + "'", end = "", file = f) # https://stackoverflow.com/questions/5598181/multiple-prints-on-the-same-line
+                        " from " + str(x1) + "," + str(y1) + " to " + str(x2) + "," + str(y2) + " linewidth " + str(self.pesos[(n, v)]) + "lc rgb '" + self.arcosColor[(n, v)] + "' back", end = "", file = f) # https://stackoverflow.com/questions/5598181/multiple-prints-on-the-same-line
 
                     if n not in self.vecinos[v]:
                         print("", file = f)

@@ -5,7 +5,7 @@ class Nodo:
         self.tipo = ""
         self.posicion = (0.5, 0.5)
         self.radio = 0.1
-        self.color = "#0080808080"
+        self.Color(127, 127, 127)
 
     def Color(self, r, g, b, a = 0):
         self.color = "#"
