@@ -1,0 +1,14 @@
+\begin{thebibliography}{1}
+
+\bibitem{Grafos}
+José~Alberto Benavides~Vázquez.
+\newblock Grafos con python para flujo en redes.
+\newblock https://github.com/jbenavidesv87/FlujoRedes.
+
+\bibitem{manhattan}
+José~Alberto" "Benavides~Vázquez.
+\newblock Grafos en red, distancia manhattan y percolación de vecindades.
+\newblock
+  https://github.com/jbenavidesv87/FlujoRedes/blob/master/Reportes/p5/percolacion.pdf.
+
+\end{thebibliography}

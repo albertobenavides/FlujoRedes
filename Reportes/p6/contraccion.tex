@@ -49,7 +49,7 @@
 
   \maketitle
 
-  Esta práctica se realizó a partir de un programa en desarrollo para flujo en redes alojado en \url{https://github.com/jbenavidesv87/FlujoRedes}. El código de esta práctica puede consultarse en \url{https://github.com/jbenavidesv87/FlujoRedes/tree/master/ejemplos/08Rejilla} \citep{Grafos}.
+  Esta práctica se realizó a partir de un programa en desarrollo para flujo en redes alojado en \url{https://github.com/jbenavidesv87/FlujoRedes}. El código de esta práctica puede consultarse en \url{https://github.com/jbenavidesv87/FlujoRedes/tree/master/ejemplos/09Contraccion} \citep{Grafos}.
 
   En esta simulación se generó un grafo en forma con un total de $25^2$ nodos distribuidos en forma de red de $25 \times 25$. Cada nodo está conectado con sus vecinos inmediatos en distancia Manhattan igual a uno y con un peso $0.1 \geq p \leq 1$ elegido al azar mediante la función \texttt{random} de la librería \texttt{Math} de \texttt{Python v. 3.0}.
 
@@ -59,7 +59,7 @@
     \includegraphics[width=1\textwidth]{t000}
     \centering
     \caption{Ejemplo de grafo dispuesto en forma de red con $10^2$ nodos colocados de diez en diez y conectados con vecinos a una distancia Manhattan de uno. En azul se muestra el nodo inicial $s$ y en amarillo el nodo final $t$.}
-    \label{grafoEjemplo6}
+    \label{t000}
   \end{figure}
 
   En esta práctica se ha implementado un algoritmo de contracción de nodos que permita aproximar el flujo máximo que existe entre un nodo inicial $s$ y uno final $t$ calculado por el algoritmo de Ford-Fulkerson. Primeramente, se eligen al azar dos nodos destinados a ser el nodo inicial $s$ y el final $t$ del grafo. A partir de estos nodos se calcula el flujo máximo mediante el algoritmo de Ford-Fulkerson. Posteriormente, se procede a realizar las contracciones. Las contracciones de nodos consisten en la elección al azar de un nodo $n$; luego se toma uno de sus vecinos $v$ de manera aleatoria. Si ese vecino no es $s$ o $t$, $v$ es contraído por $n$, lo que quiere decir que los vecinos de $v$ pasan a ser vecinos de $n$ y que $v$ es eliminado. Cuando $n$ ya cuenta entre sus vecindades con alguno de los vecinos de $v$, los pesos de las aristas que constituyen sus vecindades se suman. Esta operación se repite hasta que se tienen únicamente a $s$ y a $t$ conectados entre sí mediante un arco cuyo peso es la suma de todos los pesos elegidos al azar durante el algoritmo. Un ejemplo de este proceso puede consultarse en una animación \texttt{gif} alojada en \url{https://goo.gl/akzeSD} y una serie de cuatro imágenes en la figura \ref{ejemplosGrafos} (p. \pageref{ejemplosGrafos}).
@@ -97,7 +97,7 @@
   \begin{figure}[h]
     \includegraphics[width=1\textwidth]{flujo}
     \centering
-    \caption{Gráfica del flujo máximo calculado por el tiempo en segundos de corrida del algoritmo diseñado para esta práctica (en azul). La línea vertical roja representa el flujo máximo calculado por Floyd-Warshall y la línea vertical verde el tiempo que este último algoritmo tomó en ejecutarse.}
+    \caption{Gráfica del flujo máximo calculado por el tiempo en segundos de corrida del algoritmo diseñado para esta práctica (en azul). La línea horizontal roja representa el flujo máximo calculado por Floyd-Warshall y la línea vertical verde el tiempo que este último algoritmo tomó en ejecutarse.}
     \label{flujo}
   \end{figure}
 
