@@ -178,7 +178,7 @@ class Grafo:
     def Anchura(self, s, i, debug = False):
         while len(s) > 0:
             n = s.pop()
-            n.Color(255, 0, 0);
+            n.Color(255, 0, 0)
             if debug:
                 self.nombre = "{:06d}".format(i)
                 self.DibujarGrafo(titulo = str(i))
@@ -194,7 +194,7 @@ class Grafo:
         return i
 
     def Profundidad(self, s, i, debug = False):
-        s.Color(255, 0, 0);
+        s.Color(255, 0, 0)
         if debug:
             self.nombre = "{:06d}".format(i)
             self.DibujarGrafo(titulo = str(i))
@@ -314,7 +314,7 @@ class Grafo:
                         xLabel = 0
                         yLabel = 0
                         if m == 0:
-                            yLabel = 0.03;
+                            yLabel = 0.03
                         elif m == 1000:
                             xLabel = -0.03
                         elif m > 0:

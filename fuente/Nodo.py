@@ -6,6 +6,7 @@ class Nodo:
         self.posicion = (0.5, 0.5)
         self.radio = 0.1
         self.Color(127, 127, 127)
+        self.pExistencia = 1
 
     def Color(self, r, g, b, a = 0):
         self.color = "#"
